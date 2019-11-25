@@ -389,13 +389,25 @@
     #1
 }
 
-\newcommand\startappendix{
-    \appendix
-    \renewcommand*{\appendixname}{ภาคผนวก}
-    \renewcommand{\thechapter}{\thaialph{chapter}}
-    
-    \titlecontents{chapter}[0mm]
-    {\stepcounter{tocitem}\tocheadcont{\thelinenumber}{\thetocitem}{สารบัญ}}
-    {ภาคผนวก\hspace{1ex}\thecontentslabel\hspace{2mm}}
-    {}{\hfill \contentspage}
+\newcommand\startappendix{    
+	\appendix
+	
+	\renewcommand*{\appendixname}{}
+	\renewcommand{\thechapter}{\thaialph{chapter}}
+	
+	\titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{}{0pt}
+	{ 
+		\thispagestyle{empty}
+		\begin{center}
+			\vspace*{\stretch{1}}\LARGE{\textbf{ภาคผนวก \thechapter}}\vspace*{\stretch{1}}
+		\end{center}
+		\clearpage
+		\LARGE
+	}
+	\titlespacing*{\chapter}{0pt}{-3.2\baselineskip}{2em}
+	
+	\titlecontents{chapter}[0mm]
+	{\stepcounter{tocitem}\tocheadcont{\thelinenumber}{\thetocitem}{\contentsname}}
+	{ภาคผนวก\hspace{1ex}\thecontentslabel\hspace{2mm}}
+	{}{\hfill \contentspage}
 }
