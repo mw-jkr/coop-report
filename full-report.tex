@@ -1,0 +1,117 @@
+\documentclass{itkmitlcoop}
+
+\usepackage{afterpage}
+\usepackage{graphicx,amsmath,latexsym,amssymb,amsthm}
+\usepackage{indentfirst}
+\usepackage{cite}
+
+\graphicspath{ {images/} }
+
+\makeatletter
+% \patchcmd{<cmd>}{<search>}{<replace>}{<succes>}{<failure>}
+\patchcmd{\@chapter}{\addtocontents{lof}{\protect\addvspace{10\p@}}}{}{}{}% LoF
+\patchcmd{\@chapter}{\addtocontents{lot}{\protect\addvspace{10\p@}}}{}{}{}% LoT
+\makeatother
+
+% Your thesis title (THAI)
+\newcommand{\ThesisTiTle}{ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา}
+% Your thesis title (ENG)
+\newcommand{\ThesisTiTleENG}{ADVERTISEMENT MANAGEMENT SYSTEM BASED ON LIMITED NUMBER OF CLICKS AND IMPRESSIONS}
+\newcommand{\ThesisTiTleENGSnakecase}{Advertisement Management System Based on Limited Number of Clicks and Impressions}
+% Your name
+\newcommand{\AuName}{นาย มาวิน จงไกรรัตนกุล}
+% Your name ENG
+\newcommand{\AuNameENG}{MAWIN JONGKRIRATTANAKUL}
+\newcommand{\AuNameENGSnakecase}{Mawin Jongkrirattanakul}
+% Department / Program
+\newcommand{\DepartmentENG}{Information Technology}
+% Your student ID
+\newcommand{\SId}{59070141}
+% Your advisor
+\newcommand{\Advisor}{รองศาสตราจารย์ ดร.กิติ์สุชาต  พสุภา}
+% Your advisor
+\newcommand{\AdvisorENG}{Associate Professor Dr. Kitsuchart Pasupa}
+% Your advisor employee
+\newcommand{\Exami}{คุณ ปาลิตา เตชะนิเวศน์}
+% ชื่อสถานประกอบการ
+\newcommand{\Company}{บริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่)}
+% ภาคเรียนที่ (in normal letters)
+\newcommand{\Sem}{1}
+% ปีการศึกษา (in normal letters)
+\newcommand{\AcaY}{2562}
+% ปีการศึกษา (in normal letters)
+\newcommand{\AcaYAD}{2019}
+% วันส่งรายงาน
+\newcommand{\SubD}{2 ธันวาคม พ.ศ. 2562}
+% วันเริ่มทำงาน
+\newcommand{\StartDWork}{4 มิถุนายน พ.ศ. 2562}
+% วันสุดท้ายของการทำงาน
+\newcommand{\EndDWork}{29 พฤศจิกายน พ.ศ. 2562}
+% ที่อยู่สถานประกอบการ
+\newcommand{\Address}{เลขที่ 8 ถนนสุขุมวิท แขวงพระโขนง
+เขตคลองเตย จังหวัดกรุงเทพมหานคร \\ รหัสไปรษณีย์ 10110 โทรศัพท์ 0-2821-5788}
+% เว็บไซต์สถานประกอบการ
+\newcommand{\Website}{https://www.wongnai.com}
+% ตำแหน่งานที่ปฏิบัติ
+\newcommand{\Position}{Software Engineer (Backend)}
+
+\begin{document}    
+    \frontmatter
+    \lhead{}\rhead{}\chead{}\lfoot{}\cfoot{\thepage}\rfoot{}
+    \makecover    
+    \makeinnercover
+    \makeengcover
+    \makecopyrightcover
+    \makeletter
+    \makeack{
+        \begin{enumerate}
+            \item คุณ ปาลิตา เตชะนิเวศน์ \quad ตำแหน่ง Software Engineer (Backend) (พนักงานที่ปรึกษา)
+            \item คุณ ธนพล เนรัญชร \quad \quad ตำแหน่ง Technical Director
+        \end{enumerate}
+    }
+    \makeapproveletter
+   
+    % Setting margin for page numbering on frontmatter
+    \newgeometry{top=1in, bottom=1in, left=1.5in, right=1in, includefoot}
+    
+    \makeabstract{
+    	รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้กล่าวถึงที่มาและความสำคัญ, รายละเอียด, การออกแบบ และกระบวนการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา รวมไปถึงลักษณะขั้นตอนการทำงานเพื่อให้ได้มาซึ่งระบบที่สามารถใช้งานได้จริง โดยทางบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) ได้มอบหมายให้ระหว่างการปฏิบัติงานสหกิจศึกษา ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา เป็นระบบที่พัฒนาขึ้นมาจากระบบจัดการโฆษณาเดิมที่มีอยู่ จากเดิมที่ระบบสามารถแสดงโฆษณาได้แค่ตามช่วงเวลาที่กำหนดไว้ ระบบใหม่จะสามารถแสดงโฆษณาตามจำนวนการคลิกและจำนวนการแสดงโฆษณาที่กำหนดไว้ได้ หากโฆษณาถูกแสดงหรือมีผู้ใช้คลิกเข้าไปในโฆษณาจนครบตามจำนวนที่กำหนดไว้ ระบบก็จะหยุดแสดงโฆษณาโดยอัตโนมัติ อีกทั้งยังสามารถรายงานผลการโฆษณากลับไปยังลูกค้าได้โดยอัตโนมัติ ระบบที่ถูกพัฒนาขึ้นมาใหม่นั้น จะทำให้ลูกค้าสามารถลงโฆษณาบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ได้อย่างคุ้มค่ามากยิ่งขึ้น เนื่องจากวิธีการแสดงโฆษณาแบบดังกล่าว สามารถการันตีได้ว่า โฆษณาของลูกค้ามีผู้ชมจริง ๆ ในช่วงที่โฆษณายังแสดงผลอยู่ และลูกค้าสามารถติดตามผลการโฆษณาได้อย่างต่อเนื่อง อีกทั้งบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ก็สามารถจัดการพื้นที่การโฆษณาได้ดียิ่งขึ้น โฆษณาที่มีผู้ชมมากจะถูกหยุดการแสดงผล และนำโฆษณาอื่นมาแสดงแทน ทำให้โฆษณามีเนื้อหาที่หลากหลายมากยิ่งขึ้น
+    }
+
+   \makeabstracteng{
+       This cooperative education report presents the statement of significance, specification, design, and workflow of the Advertisement Management System Based on Limited Number of Clicks and Impressions including the development process to develop a system that can be used in production which has been assigned by Wongnai Media Co., Ltd during cooperative education. Advertisement Management System Based on Limited Number of Clicks and Impressions is a system that developed from a former advertisement management system which only able to show advertisements for just the specified period. A newer system will be able to show advertisements based on a number of clicks and impressions. When the advertisements' number of clicks or impressions reaches a limit, the system will stop showing advertisements automatically and also report advertising results back to customers automatically. The newly developed system will allow customers to advertise on the Wongnai website and application more cost-effectively due to the above method of advertisements displaying can guarantee that the client's advertisements will reach to the audience while the advertisements are showing and clients can continuously monitor the advertising results. Moreover, Wongnai will be able to better manage the advertising space. Also on the Wongnai website and application can better manage advertising space. The advertisements with a large audience will stop showing and display other advertisements instead Make the ads have more variety of content.
+   }
+
+    \newpage
+    \addcontentsline{toc}{chapter}{สารบัญ}
+    \tableofcontents
+    
+    \newpage
+    \addcontentsline{toc}{chapter}{สารบัญตาราง}
+    \listoftables    
+    
+    \newpage
+    \addcontentsline{toc}{chapter}{สารบัญภาพ}
+    \listoffigures
+    
+    % Reset frontmatter page numbering margin, back to original margin from class file
+    \restoregeometry
+
+    \mainmatter
+    \lhead{}\rhead{\thepage}\chead{}\lfoot{}\cfoot{}\rfoot{}
+    
+    \include{chapter1}
+    \include{chapter2}
+    \include{chapter3}
+    \include{chapter4}
+    \include{chapter5}
+    
+    \clearpage
+    \addcontentsline{toc}{chapter}{บรรณานุกรม}
+    \bibliographystyle{IEEEtran}
+    \bibliography{reference}
+    
+    \startappendix
+    \include{appendix}
+    
+\end{document}
