@@ -45,9 +45,9 @@
 	\item Git
 	
 	Git คือ Version Control ที่สามารถติดตามและควบคุมการเปลี่ยนแปลงของโค้ดได้ เพื่อให้ Software Engineer คนอื่น ๆ สามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพ ~\cite{git}
-	\item Spring Framework
+	\item Spring Boot
 	
-	Spring Framework คือ เฟรมเวิร์คสำหรับพัฒนา REST API, Websocket, Web และอื่น ๆ ของภาษาที่ใช้ Java Virtual Machine (JVM) ~\cite{spring}
+	Spring Boot คือ เฟรมเวิร์คสำหรับพัฒนา REST API, Websocket, Web และอื่น ๆ ของภาษาที่ใช้ Java Virtual Machine (JVM) ~\cite{spring}
 	\item Docker
 	
 	Docker คือ เทคโนโลยีสำหรับสร้าง Container ของซอฟต์แวร์ ทำให้ซอฟต์แวร์สามารถนำไปใช้งานในสภาพแวดล้อมไหนก็ได้ ~\cite{docker}
@@ -59,7 +59,81 @@
 	Gitlab CI/CD คือ เครื่องมือในการ Build ซอฟต์แวร์และ Deploy โดยอัตโนมัติ ~\cite{gitlabcicd}
 \end{enumerate}
 
+\begin{figure}[!h]
+	\centering
+	\subfigure[]{
+		\label{Fig:technology:intellij}
+		\includegraphics[width=0.15\textwidth]{intellij}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:sequelpro}
+		\includegraphics[width=0.15\textwidth]{sequelpro}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:postman}
+		\includegraphics[width=0.15\textwidth]{postman}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:vscode}
+		\includegraphics[width=0.15\textwidth]{vscode}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:gitkraken}
+		\includegraphics[width=0.15\textwidth]{gitkraken}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:asana-icon}
+		\includegraphics[width=0.15\textwidth]{asana-icon}  
+	}
+	\subfigure[]{
+	\label{Fig:technology:java}
+	\includegraphics[width=0.15\textwidth]{java}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:python}
+		\includegraphics[width=0.15\textwidth]{python}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:mysql}
+		\includegraphics[width=0.25\textwidth]{mysql}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:bigquery}
+		\includegraphics[width=0.25\textwidth]{bigquery}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:git}
+		\includegraphics[width=0.15\textwidth]{git}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:spring-boot}
+		\includegraphics[width=0.15\textwidth]{spring-boot}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:docker}
+		\includegraphics[width=0.15\textwidth]{docker}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:k8s}
+		\includegraphics[width=0.25\textwidth]{k8s}  
+	}
+	\subfigure[]{
+		\label{Fig:technology:gitlab-ci-cd}
+		\includegraphics[width=0.15\textwidth]{gitlab-ci-cd}  
+	}
+	\caption{สัญลักษณ์ของเทคโนโลยีและเครื่องมือต่าง ๆ ที่ใช้ IntelliJ IDEA (ก), Sequel Pro (ข), Postman (ค), Visual Studio Code (ง), GitKraken (จ), Asana (ฉ), Java (ช), Python (ซ), MySQL (ฌ), Google BigQuery (ญ), Git (ฎ), Spring Boot (ฏ), Docker (ฐ), Kubernetes (ฑ), Gitlab CI/CD (ฒ)}
+	\label{Fig:technology}
+\end{figure}
+
 ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณาที่พัฒนาขึ้นมานั้น ประกอบด้วย Service ต่าง ๆ ได้แก่
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1\textwidth]{adreport-diagram.png}  
+	\caption{แผนผังภาพรวมการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา}
+	\label{Fig:adreport-diagram}
+\end{figure}
+
 \begin{enumerate}
 	\item Wongnai Core
 	
@@ -71,44 +145,44 @@
 	\end{itemize}
 	\item Analytics Data Pipeline
 	
-	Analytics Data Pipeline เป็น Service ขนาดเล็กที่ถูกพัฒนาด้วยภาษา Python ปกติแล้ว Client จะส่งข้อมูลเหตุการณ์ต่าง ๆ ที่เกิดขึ้นใน Wongnai มาเก็บใน Google BigQuery ซึ่งข้อมูลเหตุการณ์ต่าง ๆ นั้นมีหลากหลายมาก โดยข้อมูลที่จำเป็นต้องใช้เพื่อให้แสดงโฆษณาแบบจำกัดจำนวนการคลิกได้ ได้แก่ ข้อมูลที่ผู้ใช้ Wongnai ที่คลิกไปยังโฆษณา ซึ่งข้อมูลเหตุการณ์ที่เกิดขึ้นใน Wongnai ทุก ๆ อย่างนั้นจะถูกเก็บอยู่ในตารางข้อมูลเดียวกันทั้งหมด ทำให้ตารางนั้นเป็นตารางที่มีข้อมูลมหาศาล และการดึงข้อมูลจาก Google BigQuery หนึ่งครั้งจะต้องเสียเครดิตตามขนาดของข้อมูลในตาราง หากดึงจากตารางขนาดใหญ่นั้นโดยตรง จะทำให้สูญเสียเครดิตไปโดยไม่จำเป็น Analytics Data Pipeline จึงถูกพัฒนาขึ้นเพื่อแก้ไขปัญหาในจุดนี้ โดย Service นี้จะทำการใช้คำสั่ง SQL เพื่อสร้างตารางข้อมูลใหม่โดยแยกออกมาจากตารางขนาดใหญ่อีกที และนำข้อมูลเฉพาะส่วนที่ต้องการมาเก็บไว้ ทำให้ได้ตารางข้อมูลที่มีขนาดเล็กลง และมีเฉพาะส่วนที่เราต้องการนำไปใช้จริง ๆ โดยในที่นี้เราจะแยกเฉพาะข้อมูลการแสดงโฆษณาของ Wongnai และข้อมูลที่ผู้ใช้ Wongnai ที่คลิกไปยังโฆษณา หน้าที่อีกอย่างหนึ่งที่สำคัญของ Service นี้ คือการนำข้อมูลการคลิกของโฆษณาที่รวมรวบไปเก็บในตารางขนาดเล็กแล้ว ส่งไปอัปเดตที่ฐานข้อมูลของ Wongnai Core ทุก ๆ วัน เพื่อให้ Wongnai Core นำข้อมูลส่วนนี้ไปประมวลผลต่อ
+	Analytics Data Pipeline เป็น Service ขนาดเล็กที่ถูกพัฒนาด้วยภาษา Python ปกติแล้ว Client จะส่งข้อมูลเหตุการณ์ต่าง ๆ ที่เกิดขึ้นใน Wongnai มาเก็บใน Google BigQuery ซึ่งข้อมูลเหตุการณ์ต่าง ๆ นั้นมีหลากหลายมาก โดยข้อมูลที่จำเป็นต้องใช้เพื่อให้แสดงโฆษณาแบบจำกัดจำนวนการคลิกได้ ได้แก่ ข้อมูลที่ผู้ใช้ Wongnai ที่คลิกไปยังโฆษณา ซึ่งข้อมูลเหตุการณ์ที่เกิดขึ้นใน Wongnai ทุก ๆ อย่างนั้นจะถูกเก็บอยู่ในตารางข้อมูลเดียวกันทั้งหมด ทำให้ตารางนั้นเป็นตารางที่มีข้อมูลมหาศาล และการดึงข้อมูลจาก Google BigQuery หนึ่งครั้งจะต้องเสียเครดิตตามขนาดของข้อมูลในตาราง หากดึงจากตารางขนาดใหญ่นั้นโดยตรง จะทำให้สูญเสียเครดิตไปโดยไม่จำเป็น Analytics Data Pipeline จึงถูกพัฒนาขึ้นเพื่อแก้ไขปัญหาในจุดนี้ โดย Service นี้จะทำการใช้คำสั่ง SQL เพื่อสร้างตารางข้อมูลใหม่โดยแยกออกมาจากตารางขนาดใหญ่อีกที และ Aggregate ข้อมูลเฉพาะส่วนที่ต้องการมาเก็บไว้ ทำให้ได้ตารางข้อมูลที่มีขนาดเล็กลง และมีเฉพาะส่วนที่เราต้องการนำไปใช้จริง ๆ โดยในที่นี้เราจะแยกเฉพาะข้อมูลการแสดงโฆษณาของ Wongnai และข้อมูลที่ผู้ใช้ Wongnai ที่คลิกไปยังโฆษณา หน้าที่อีกอย่างหนึ่งที่สำคัญของ Service นี้ คือการนำข้อมูลการคลิกของโฆษณาที่รวมรวบไปเก็บในตารางขนาดเล็กแล้ว ส่งไปอัปเดตที่ฐานข้อมูลของ Wongnai Core ทุก ๆ วัน เพื่อให้ Wongnai Core นำข้อมูลส่วนนี้ไปประมวลผลต่อ
 
 	\item Ad Report
 	
-	Ad Report เป็น Service ที่ถูกพัฒนาด้วยภาษา Java ทำหน้าที่สร้างอีเมลรายงานสถิติของโฆษณา ประกอบไปด้วยข้อมูลต่าง ๆ ดังนี้ จำนวนการแสดงผลโฆษณาต่อวัน, จำนวนผู้ที่คลิกเข้าไปในโฆษณาต่อวัน, จำนวนการคลิกของโฆษณาที่ยังคงเหลือ และจำนวนคลิกของโฆษณาที่ลูกค้าซื้อไว้ โดยภายใน Service นี้ จะมีฟังก์ชันหลัก 4 อย่าง ได้แก่
+	Ad Report เป็น Service ที่ถูกพัฒนาด้วยภาษา Java ร่วมกับ Spring Boot ทำหน้าที่สร้างอีเมลรายงานสถิติของโฆษณา ประกอบไปด้วยข้อมูลต่าง ๆ ดังนี้ จำนวนการแสดงผลโฆษณาต่อวัน, จำนวนผู้ที่คลิกเข้าไปในโฆษณาต่อวัน, จำนวนการคลิกของโฆษณาที่ยังคงเหลือ และจำนวนคลิกของโฆษณาที่ลูกค้าซื้อไว้ โดยภายใน Service นี้ จะมีฟังก์ชันหลัก 4 อย่าง ได้แก่
 	\begin{itemize}
-		\item[-] Statistics Updater
+		\item Statistics Updater
 		
-		ทำหน้าที่นำข้อมูลของโฆษณาจาก Google BigQuery มาอัปเดตในฐานข้อมูลของ Ad Report
-		\item[-] Report
+		 ฟังก์ชัน Statistics Updater ทำหน้าที่นำข้อมูลของโฆษณาจาก Google BigQuery มาอัปเดตในฐานข้อมูลของ Ad Report กรณีที่ข้อมูลที่เข้ามาเป็นของร้านที่ไม่เคยปรากฏอยู่ในฐานข้อมูลของ Ad Report (เป็นร้านที่ลงโฆษณากับ Wongnai เป็นครั้งแรก) ก็จะทำการเรียกฟังก์ชัน RetrieveData เพื่อร้องขอข้อมูลจาก Wongnai Core ซึ่งประกอบไปด้วยชื่อร้าน และอีเมลของร้าน นำไปประกอบในการทำรายงานที่สมบูรณ์และส่งอีเมลกลับไปได้
+		\item Report
 		
-		ทำหน้าที่สร้างรายงานที่จะส่งไปพร้อมกับอีเมลให้กับลูกค้า
-		\item[-] ReportEmail
+		ฟังก์ชัน Report ทำหน้าที่สร้างรายงานที่จะส่งไปพร้อมกับอีเมลให้กับลูกค้า
+		\item Report Email
 		
-		ทำหน้าที่สร้างอีเมลพร้อมกับแนบไฟล์รายงานส่งไปยังอีเมลของลูกค้า
-		\item[-] RetrieveData
+		ฟังกชัน Report Email ทำหน้าที่สร้างอีเมลพร้อมกับแนบไฟล์รายงานที่ได้จากฟังก์ชัน Report ส่งไปยังอีเมลของลูกค้า
+		\item Retrieve Data
 		
-		ทำหน้าหน้าที่ร้องขอข้อมูลจาก Wongnai Core ที่จำเป็นต้องใช้เพื่อสร้างการรายงานที่สมบูรณ์
+		ฟังกชัน Retrieve Data ทำหน้าหน้าที่ร้องขอข้อมูลที่จำเป็นจาก Wongnai Core เพื่อนำไปใช้ในการสร้างรายงานและการส่งอีเมลที่สมบูรณ์
+	\end{itemize}
+	โดยภายใน Ad Report ก็จะมี Cron ซึ่งเป็นเครื่องมือของ Unix ที่จะทำให้สามารถรัน Command Line หรือ Shell Scripts ตามช่วงเวลาที่เรากำหนดไว้ได้โดยอัตโนมัติ ในที่นี้ได้มีการนำ Cron ไปใช้งาน 2 ส่วน ได้แก่
+	\begin{itemize}
+		\item Daily Statistics Updater
+		
+		Daily Statistics Updater จะเรียกใช้งานฟังก์ชัน Statistics Updater ทุก ๆ วัน เพื่ออัปเดตฐานข้อมูลของ Ad Report
+		\item Weekly Report Email
+		
+		Weekly Report Email จะเรียกใช้งานฟังก์ชัน Report และ Report Email เพื่อสร้างรายงานสถิติของโฆษณาและส่งอีเมลกลับไปยังลูกค้าทุก ๆ สัปดาห์ ซึ่งจะส่งให้เฉพาะร้านที่ยังจำนวนคลิกโฆษณาคงเหลืออยู่ โดยดูจากข้อมูลที่ร้องขอมาจากฟังก์ชัน Retrieve Data
 	\end{itemize}
 \end{enumerate}
 
-กระบวนการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา จะเป็นไปตามแผนผังดังต่อไปนี้
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\textwidth]{adreport-diagram.png}  
-	\caption{แผนผังภาพรวมการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา}
-	\label{Fig:adreport-diagram}
-\end{figure}
+Service ทั้งหมดที่กล่าวมาข้างต้นจะใช้ Docker สร้าง Image ของแต่ละ Service จากนั้นนำ Image ไป Deploy เป็น Container บนเครื่องเซิร์ฟเวอร์ โดยเครื่องเซิร์ฟเวอร์นั้นจะถูกจัดการด้วย Kubernetes ทั้งหมด  เมื่อทำการนำโค้ดเวอร์ชันใหม่ขึ้นไปบน Git จะมี Gitlab CI/CD ที่ช่วยในการสร้าง Image และ Deploy ให้โดยอัตโนมัติอยู่
 
 \section{ลักษณะขั้นตอนการทำงาน}
-ทีม Development ของบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) จะถูกแบ่งออกเป็นทีมย่อย ๆ ตามประเภทของฟังก์ชันที่รับผิดชอบ เรียกว่า Squad ซึ่งจะเป็นทีมแบบ Cross-Functional กล่าวคือ ภายในทีมจะประกอบไปด้วยหลาย ๆ ฝ่าย ได้แก่ Project Manager, Software Engineer (Frontend), Software Engineer (Backend), Software Engineer (iOS), Software Engineer (Android) และ Quality Assurance Engineer
-
-แต่ละ Squad นั้นจะทำงานโดยใช้ Scrum เป็นหลัก Scrum จะทำงานเป็นวงรอบ (Sprint) แต่ละรอบนั้นจะเท่ากับ 1 สัปดาห์ แต่ภายหลังได้มีการปรับเปลี่ยนไปเป็นรอบละ 2 สัปดาห์ โดยจะกิจกรรมที่สำคัญต่าง ๆ ดังต่อไปนี้
+ทีม Development ของบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) จะถูกแบ่งออกเป็นทีมย่อย ๆ ตามประเภทของงานที่รับผิดชอบ เรียกว่า Squad ซึ่งจะเป็นทีมแบบ Cross-Functional กล่าวคือ ภายในทีมจะประกอบไปด้วยหลาย ๆ ฝ่าย ได้แก่ Project Manager, UX/UI Designer, Software Engineer (Frontend), Software Engineer (Backend), Software Engineer (iOS), Software Engineer (Android) และ Quality Assurance Engineer โดยแต่ละ Squad อาจจะฝ่ายอื่น ๆ เพิ่มเติมแตกต่างกันไป ขึ้นอยู่กับลักษณะของงานที่รับผิดชอบ โดยแต่ละ Squad นั้นจะทำงานโดยใช้ Scrum Framework เป็นหลัก Scrum จะทำงานเป็นวงรอบ (Sprint) แต่ละรอบนั้นจะเท่ากับ 2 สัปดาห์ ภายใน Sprint จะกิจกรรมที่สำคัญต่าง ๆ ดังต่อไปนี้
 \begin{enumerate}
 	\item Sprint Planning
 	
-	เป็นการประชุมตอนต้นรอบ เพื่อรับมอบหมายงานจาก Project Manager และเป็นการประชุมเพื่อปรึกษาหาวิธีการทำงานและวิธีการแก้ไขปัญหาต่าง ๆ ที่เกี่ยวกับงานที่ได้รับมอบหมาย
+	เป็นการประชุมตอนต้น Sprint เพื่อรับมอบหมายงานจาก Project Manager และเป็นการประชุมเพื่อปรึกษาหาวิธีการทำงานและวิธีการแก้ไขปัญหาต่าง ๆ ที่เกี่ยวกับงานที่ได้รับมอบหมาย
 	
 	\item Daily Meeting
 	
@@ -116,11 +190,11 @@
 	
 	\item Backlog Refinement Meeting
 	
-	เป็นการประชุมตอนกลางรอบ เพื่อพิจารณาว่างานที่ได้รับมอบหมายมา มีขนาดใหญ่หรือเล็กกว่าที่วางแผนไว้หรือไม่ และปรึกษาหาทางแก้ไขที่เหมาะสมกับสถานการณ์
+	ปกติเมื่อ Squad ได้รับมอบหมายให้ทำงานใหม่ ๆ งานนั้นจะถูกจัดไว้ใน Features Backlog ก่อน ซึ่งงานที่อยู่ในนี้จะถูกนำเข้า Sprint ถัด ๆ ไป ขึ้นอยู่กับการตัดสินใจของ Project Manager การประชุมนี้จะจัดตอนกลาง Sprint เพื่อพิจารณางานที่อยู่ Features Backlog ว่าควรจะทำอย่างไร, เป็นงานสำคัญที่ต้องเอามาเท่าก่อนหรือไม่ และประเมินเวลาที่จะต้องใช้ในการทำงานชิ้นนี้ เป็นต้น
 	
 	\item Retrospective Meeting
 	
-	เป็นการประชุมตอนปลายรอบ เพื่อสรุปการทำงานที่ได้ทำไปในรอบ และให้สมาชิกภายในทีมอธิบายปัญหาที่เกิดขึ้นในรอบ รวมไปถึงเรื่องราวดี ๆ ที่เกิดขึ้นในรอบด้วย เพื่อนำไปปรับปรุงการทำงานในรอบถัดไป
+	เป็นการประชุมตอนปลาย Sprint เพื่อสรุปการทำงานที่ได้ทำไปในรอบ และให้สมาชิกภายในทีมอธิบายปัญหาที่เกิดขึ้นในรอบ รวมไปถึงเรื่องราวดี ๆ ที่เกิดขึ้นในรอบด้วย เพื่อนำไปปรับปรุงการทำงานในรอบถัดไป
 \end{enumerate}
 
 การติดต่อสื่อสารภายในองค์กรจะใช้ Slack เป็นหลัก สถานะของงานภายในทีมสามารถดูได้จาก Kanban Board ซึ่งเป็นบอร์ดที่ตั้งอยู่ในพื้นที่ทำงาน และ Asana ซึ่งเป็นระบบออนไลน์ที่จะทำให้สมาชิกภายในทีมสามารถทราบสถานะของงานได้อย่างรวดเร็ว ภายในกระบวนการทำงาน สถานะของงานจะเป็นไปตามดังต่อไปนี้
@@ -154,13 +228,13 @@
 	เมื่อนำงานขึ้นระบบ Beta เสร็จแล้ว งานจะมีสถานะเป็น Done แต่อย่างไรก็ตาม เจ้าของงานจะต้องติดตามงานของตัวเองจนกว่างานจะขึ้นอยู่บนระบบที่ใช้งานจริง
 \end{enumerate}
 
-โดยส่วนมากแล้ว ถ้าเป็นงานที่เป็นการเขียนโค้ด จะมีกระบวนตามที่กล่าวมา แต่อย่างไรก็ตามงานบางชนิดไม่จำเป็นต้องทำตามกระบวนการอย่างเคร่งครัดก็ได้ ขึ้นอยู่กับความเหมาะสมของงานว่าควรจะเป็นแบบไหน เช่น งานบางชิ้นที่เป็นการสร้างเครื่องมือให้กับพนักงานฝ่ายอื่นในบริษัทใช้ เราสามารถให้พนักงานฝ่ายนั้น ซึ่งเป็นผู้ใช้งานโดยตรงเป็นผู้ทดสอบงานของเราแทนก็ได้ เพื่อที่จะนำความคิดเห็นไปปรับปรุงงานได้อย่างตรงจุดที่สุด
+โดยส่วนมากแล้ว ถ้าเป็นงานที่เป็นการเขียนโค้ดจะมีกระบวนการทำงานตามที่กล่าวมาข้างต้น แต่อย่างไรก็ตามงานบางชนิดไม่จำเป็นต้องทำตามกระบวนการอย่างเคร่งครัดก็ได้ ขึ้นอยู่กับความเหมาะสมของงานว่าควรจะเป็นแบบไหน
 
-การทำงานของทีม Development ที่เป็นการเขียนโค้ดจะใช้ Test Driven Development (TDD) เป็นหลัก เป็นการเขียนชุดทดสอบของโค้ดขึ้นมาก่อน แล้วรันชุดสอบให้เกิดข้อผิดพลาด จากนั้นจึงเขียนโค้ดเพื่อแก้ไขไม่ให้เกิดข้อผิดพลาดนั้น ระหว่างการเขียนโค้ดจะต้องคอยคำนึงถึงคุณภาพของโค้ด หากมีโค้ดส่วนที่ทำงานซ้ำกันจะต้องทำการ Refactoring โค้ดส่วนนั้นด้วย
+การทำงานของทีม Development ที่เป็นการเขียนโค้ดจะใช้ Test Driven Development (TDD) เป็นหลัก เป็นการเขียนชุดทดสอบของโค้ดขึ้นมาก่อน แล้วรันชุดทดสอบให้เกิดข้อผิดพลาด จากนั้นจึงเขียนโค้ดเพื่อแก้ไขข้อผิดพลาดนั้น ระหว่างการเขียนโค้ดจะต้องคอยคำนึงถึงคุณภาพของโค้ด หากมีโค้ดส่วนที่ทำงานซ้ำกันจะต้องทำการ Refactoring โค้ดส่วนนั้นด้วย เพื่อให้ Software Engineer คนอื่น สามารถพัฒนาโค้ดส่วนนี้ต่อได้ง่าย
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{kanban-board.png}  
+	\includegraphics[width=1\textwidth]{kanban-board.png}  
 	\caption{Kanban Board ที่ตั้งอยู่ในพื้นที่ทำงาน}
 	\label{Fig:kanban-board}
 \end{figure}
