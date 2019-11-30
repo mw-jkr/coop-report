@@ -1,5 +1,5 @@
 \chapter{รายละเอียดการปฏิบัติงาน}
-\label{chapter:related-theory}
+\label{chapter:working-detail}
 
 เริ่มสหกิจศึกษาโดยปฏิบัติงานที่ บริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) ตั้งแต่วันที่ 4 มิถุนายน พ.ศ.2562 จนถึง 29 พฤศจิกายน พ.ศ.2562 รวมเป็นระยะเวลาประมาณ 6 เดือน โดยในการปฏิบัติงานต่าง ๆ ในช่วงสหกิจศึกษา มีรายละเอียดดังต่อไป
 
@@ -7,124 +7,209 @@
 ปฏิบัติงานด้วยตำแหน่ง Software Engineer (Backend) ทำหน้าที่รับผิดชอบในการพัฒนาและดูแลเซิร์ฟเวอร์ของเว็บไซต์ wongnai.com เพื่อให้ผู้ใช้งานทุกแพลตฟอร์มทั้งเว็บไซต์และ แอปพลิเคชันมือถือสามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพ, ควบคุมคุณภาพของโค้ดให้มีคุณภาพที่ดี, ทำงานได้ถูกต้อง, ทดสอบและดูแลได้ง่าย, มีความยืดหยุ่นพร้อมรับการเปลี่ยนแปลงในอนาคต
 
 \section{รายละเอียดของโครงงานที่รับผิดชอบ}
-โครงงานที่รับผิดชอบคือ ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา เป็นระบบที่พัฒนาขึ้นมาใหม่ต่อจากระบบเดิม ซึ่งจะทำให้ลูกค้าสามารถลงโฆษณากับทาง Wongnai แบบจำกัดจำนวนการแสดงผลและการคลิก อีกทั้งยังสามารถส่งอีเมลรายงานผลการโฆษณากลับไปยังลูกค้าทุก ๆ สัปดาห์โดยอัตโนมัติอีกด้วย
+โครงงานที่รับผิดชอบคือ ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา เป็นระบบที่พัฒนาขึ้นมาใหม่ต่อจากระบบเดิม ซึ่งจะทำให้ลูกค้าสามารถลงโฆษณากับทาง Wongnai แบบจำกัดจำนวนการแสดงผลและการคลิกได้ อีกทั้งยังสามารถส่งอีเมลรายงานผลการโฆษณากลับไปยังลูกค้าทุก ๆ สัปดาห์โดยอัตโนมัติอีกด้วย เพื่อให้สามารถส่งมอบงานได้เร็วที่สุดและระบบทำงานได้จริง จึงได้พัฒนาฟังก์ชันหลัก 2 ประการ ได้แก่
+\begin{itemize}
+	\item จำกัดการแสดงโฆษณาของร้านด้วยจำนวนการคลิกโฆษณาได้
+	\item สามารถส่งอีเมลรายงานผลการโฆษณากลับไปยังลูกค้าโดยอัตโนมัติได้
+\end{itemize}
 
-\section{รายละเอียดของงานที่ปฏิบัติ}
-ในการปฏิบัติงานครั้งนี้ได้ทำการพัฒนาระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณาเฉพาะฟังก์ชันหลักที่จำเป็น เพื่อให้สามารถส่งมอบงานได้เร็วที่สุดและสามารถทำงานได้เป็นระบบ ได้แก่ ฟังก์ชันการจำกัดการแสดงโฆษณาของร้านด้วยจำนวนการคลิกโฆษณา กับฟังก์ชันการส่งอีเมลรายงานผลการโฆษณากลับไปยังลูกค้าโดยอัตโนมัติทุก ๆ สัปดาห์ โดยในการปฏิบัติงานครั้งนี้ เพื่อให้การพัฒนาระบบเป็นไปอย่างราบรื่น, รวดเร็ว และสามารถทำงานร่วมสมาชิกทีมคนอื่น ๆ ได้อย่างมีประสิทธิภาพ จึงได้มีการนำเทคโนโลยีและเครื่องมือต่าง ๆ มาใช้งาน ได้แก่
+\section{แนวคิดและทฤษฎีที่เกี่ยวข้อง}
+\begin{enumerate}
+	\item Cost Per Click (CPC)
+	
+	CPC เป็นรูปแบบการโฆษณาผ่านทางอินเตอร์เน็ตอย่างหนึ่ง เพื่อเป็นการเพิ่มยอดผู้ชมของเว็บไซต์  โดยจะเสียค่าใช้จ่ายก็ต่อเมื่อมีการคลิกไปยังโฆษณาที่แสดงไว้ ~\cite{cpc}
+	
+	\item ไมโครเซอร์วิส
+	
+	ไมโครเซอร์วิสเป็นสถาปัตยกรรมที่เกิดขึ้นจากสถาปัตยกรรมเชิงบริการ (Service-Oriented Architecture) โดยจะแยกแอปพลิเคชันออกเป็นเซอร์วิสขนาดเล็ก มีความสามารถในการจัดการด้วยตัวเอง, มีความเป็นอิสระต่อกัน และมีความยิดหยุ่นพร้อมต่อการเปลี่ยนแปลง ~\cite{microservices} โดยแต่ละเซอร์วิสนั้นจะมีฐานข้อมูลเป็นของตัวเองหรือจะไม่มีก็ได้ แต่จะไม่ใช้ฐานข้อมูลร่วมกัน และเซอร์วิสสามารถเรียกใช้งานอีกเซอร์วิสหนึ่งได้ แต่อีกเซอร์วิสหนึ่งจะไม่ไปเรียกใช้งานอีกเซอร์วิส เช่น เซอร์วิส 3 เรียกใช้งานเซอร์วิส 2 แต่เซอร์วิส 2 จะไม่ไปเรียกใช้งานเซอร์วิส 3 ทั้งนี้เพื่อไม่ให้เป็นการทำให้เซอร์วิส 2 เซอร์วิสถูกผูกมัดซึ่งกัน
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{microservices}  
+		\caption{แผนผังแสดงตัวอย่างการออกแบบระบบโดยใช้สถาปัตยกรรมไมโครเซอร์วิส}
+		\label{Fig:microservices}
+	\end{figure}
+
+	\item REST (Representational state transfer)
+
+	REST เป็นสถาปัตยกรรมซอฟต์แวร์อย่างหนึ่งในการสร้างเว็บเซอร์วิส ทำให้แต่ละเซอร์วิสสามารถทำงานร่วมกันได้ผ่านเครือข่ายอินเตอร์เน็ต มักจะใช้ HTTP (Hypertext Transfer Protocol) เป็นโปรโตคอลในการสื่อสาร โดย HTTP นั้นเป็นโปรโตคอลแบบ Stateless ทำให้มีสมรรถภาพสูง, มีความน่าเชื่อถือ และมีความสามารถในการนำกลับไปใช้ใหม่ได้โดยไม่กระทบกับระบบส่วนอื่นแม้ว่าระบบกำลังทำงานอยู่ก็ตาม ~\cite{rest}
+	
+	\item HTTP (Hypertext Transfer Protocol)
+	
+	HTTP เป็นโปรโตคอลในการส่งข้อมูลบนเว็บ เป็นโปรโตคอลแบบไคลเอนต์-เซิร์ฟเวอร์ โดยไคลเอนต์จะส่งคำร้องขอข้อมูลไปยังเซิร์ฟเวอร์ จากนั้นเซิร์ฟเวอร์ก็จะส่งคำตอบกลับมาที่ไคลเอนต์ ~\cite{http}
+
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{http}  
+		\caption{แผนผังแสดงตัวอย่างการสื่อสารด้วยโปรโตคอล HTTP}
+		\label{Fig:http}
+	\end{figure}
+
+	\item Repository Pattern
+	
+	Repository Pattern เป็นรูปแบบหนึ่งในการออกแบบเซอร์วิส โดย Repository เป็นคลาสที่ห่อหุ้มลอจิกต่าง ๆ ที่เอาไว้เข้าถึงแหล่งข้อมูล ทำให้สามารถเข้าถึงข้อมูลเพียงแค่ใช้ฟังก์ชัน, ง่ายต่อการดูแลรักษา และแยกส่วนการทำงานระหว่างเทคโนโลยีที่เอาไว้เข้าถึงแหล่งข้อมูลออกจากโดเมนเลเยอร์ของโมเดล ~\cite{repository} ยกตัวอย่างเช่น มีคลาสของออบเจ็กต์ชื่อว่า Product และออบเจ็กต์ถูกเก็บอยู่ในฐานข้อมูล เมื่อมีลอจิกทางธุรกิจใดก็ตามที่ต้องการค้นหา Product ตามชื่อที่ต้องการ เราสามารถใช้เมธอด findByName ของคลาส ProductRepository เพื่อทำการค้นคืนข้อมูลออบเจ็กต์ Product ที่เราต้องการได้ทันที
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{repository}  
+		\caption{แผนผังแสดงตัวอย่างของ Repository Pattern}
+		\label{Fig:repository}
+	\end{figure}
+	
+	\item Object-Relational Mapper (ORM)
+	
+	Object-Relational Mapper เป็นการแปลงออบเจ็กต์ที่เกิดขึ้นจากแนวคิดการเขียนโปรแกรมเชิงวัตถุ (Object-Oriented Programing) ให้สามารถใช้งานกับฐานข้อมูลประเภท Relational ได้ ~\cite{orm} ยกตัวอย่างเช่น คลาส Product มีคุณลักษณะต่าง ๆ ได้แก่ id, name และ price เมื่อนำ ORM มาใช้เพื่อแปลงออบเจ็กต์ของคลาสนี้ไปอยู่ในรูปของ Relation ก็จะได้ Relation ที่มีโครงสร้างดังรูปที่ 2.4
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.8\textwidth]{orm}  
+		\caption{ตัวอย่างของการแปลงออบเจ็กต์ของคลาสไปเป็น Relation ด้วย Object-Relational Mapper}
+		\label{Fig:orm}
+	\end{figure}
+	
+	\item คอนเทนเนอร์
+	
+	คอนเทนเนอร์เป็นหน่วยของซอฟต์แวร์ที่ทำการบรรจุโค้ดและส่วนอื่น ๆ ที่เกี่ยวข้องเอาไว้ทั้งหมดเพื่อให้สามารถรันได้ทันทีในสภาพแวดล้อมใดก็ได้ มีความเป็นมาตรฐาน และประหยัดทรัพยากร เนื่องจากในการรันหลาย ๆ แอปพลิเคชันที่เป็นคอนเทนเนอร์พร้อมกันจะใช้แค่ระบบปฏิบัติการเดียว
+	
+	\begin{figure}[!h]
+		\centering
+		\subfigure[]{
+			\label{Fig:infra:container}
+			\includegraphics[width=0.45\textwidth]{container-infra}  
+		}
+		\subfigure[]{
+			\label{Fig:infra:vm}
+			\includegraphics[width=0.5\textwidth]{vm-infra}  
+		}
+		\caption{แผนผังแสดงโครงสร้างเบื้องต้นภายในเซิร์ฟเวอร์เมื่อทำการใช้งาน Docker (ก) กับ Virtual Machine (ข)}
+		\label{Fig:infra}
+	\end{figure}
+
+	จากรูป 2.5 (ข) แสดงให้เห็นว่า Virtual Machine ทั้งหมดจำเป็นต้องมีระบบปฏิบัติการเป็นของตนเอง ทำให้สิ้นเปลืองทรัพยากรของเซิร์ฟเวอร์โดยไม่จำเป็น แต่คอนเทนเนอร์สามารถรันร่วมกันได้โดยใช้ระบบปฏิบัติการร่วมกัน และมี Engine เป็นตัวจัดการการทำงานของแต่ละคอนเทนเนอร์ ทำให้ประหยัดทรัพยากรของเซิร์ฟเวอร์ และประหยัดค่าใช้จ่ายในเรื่องลิขสิทธิ์ของระบบปฏิบัติการที่ใช้รันเซิร์ฟเวอร์ ~\cite{docker}
+	
+	\item Orchestration
+	
+	Orchestration เป็นตัวจัดการระบบคอมพิวเตอร์และซอฟต์แวร์ รวมไปการตั้งค่าต่าง ๆ และการประสานงานกับซอฟต์แวร์อื่น ๆ โดยอัตโนมัติ ~\cite{orchestration}
+	
+\end{enumerate}
+
+\section{เครื่องมือและเทคโนโลยีที่ใช้ในการปฏิบัติงาน}
 \begin{enumerate}
 	\item IntelliJ IDEA
 	
-	IntelliJ IDEA เป็น Integrate Development Environment (IDE) สำหรับใช้ในการพัฒนาซอฟต์แวร์ที่ใช้ Java Virtual Machine (JVM) โดยเฉพาะ มีระบบแนะนำการเขียนโค้ดที่ทำให้การเขียนโค้ดเป็นไปอย่างราบรื่นและรวดเร็ว ~\cite{intellij}
-	\item Sequel Pro
+	IntelliJ IDEA เป็น Integrate Development Environment (IDE) สำหรับใช้ในการพัฒนาซอฟต์แวร์ที่ใช้ Java Virtual Machine (JVM) โดยเฉพาะ มีระบบแนะนำการเขียนโค้ดกับระบบเติมคำอัตโนมัติที่ทำให้การเขียนโค้ดเป็นไปอย่างราบรื่นและรวดเร็ว ~\cite{intellij}
 	
-	Sequel Pro เป็นแอปพลิเคชันสำหรับจัดการฐานข้อมูล MySQL ~\cite{sequelpro}
-	\item Postman
+	\begin{figure}[!h]
+		\centering
+		\subfigure[]{
+			\label{Fig:intellij:suggestion}
+			\includegraphics[width=0.8\textwidth]{suggestion}  
+		}
+		\subfigure[]{
+			\label{Fig:intellij:auto-completion}
+			\includegraphics[width=0.8\textwidth]{auto-completion}  
+		}
+		\caption{ระบบแนะนำการเขียนโค้ด (ก) กับระบบเติมคำอัตโนมัติ (ข) ของ IntelliJ IDEA}
+		\label{Fig:intellij}
+	\end{figure}
 	
-	Postman เป็นแอปพลิเคชันสำหรับสร้าง API Request เช่น REST, SOAP, GraphQL เพื่อทดสอบการทำงาน API ของ Server และสามารถตรวจสอบ Response ที่ส่งกลับมาได้ ~\cite{postman}
 	\item Visual Studio Code
 	
 	Visual Studio Code เป็น Text Editor ที่รองรับได้หลากหลายภาษา มีระบบไฮไลท์ Syntax ในการตรวจสอบ Syntax ของโค้ด และสามารถติดตั้งส่วนขยายต่าง ๆ เพิ่มเติมได้ตามความเหมาะสมในการทำงาน ~\cite{vscode}
-	\item GitKraken
 	
-	GitKraken เป็น Git GUI Client ที่ทำให้สามารถใช้งาน Git ได้อย่างสะดวกสบาย ~\cite{gitkraken}
-	\item Asana
-	
-	Asana คือระบบออนไลน์ที่คอยแสดงสถานะการทำงานของสมาชิกทีม ทำให้สมาชิกคนอื่น ๆ ในทีมสามารถทราบสถานะงานของแต่ละคนได้อย่างรวดเร็ว ~\cite{asana}
 	\item Java
 	
 	Java เป็นภาษาคอมพิวเตอร์ประเภท Object-Oriented เมื่อคอมไพล์แล้วจะได้ bytecode โดยเราสามารถนำ bytecode นี้ ไปใช้งานบนคอมพิวเตอร์เครื่องไหนก็ได้ที่มี Java Virtual Machine (JVM) ~\cite{java}
-	\item Python
 	
-	Python เป็นภาษาคอมพิวเตอร์ระดับสูงที่ใช้ Python Interpreter มีจุดเด่นที่สามารถอ่านและทำความเข้าใจโค้ดได้ง่าย โดย Python Interpreter นั้น สามารถติดตั้งได้ในหลากหลายระบบปฏิบัติการ  ~\cite{python}	
-	\item MySQL
-	
-	MySQL เป็นตัวจัดการฐานข้อมูลแบบ Relational ที่เป็น Open source ~\cite{mysql}
-	\item Google BigQuery
-	
-	Google BigQuery เป็นบริการคลังข้อมูลบน Cloud ที่ให้บริการโดย Google และสามารถใช้ SQL เพื่อใช้งาน Google BigQuery ได้ ~\cite{bigquery}
-	\item Git
-	
-	Git คือ Version Control ที่สามารถติดตามและควบคุมการเปลี่ยนแปลงของโค้ดได้ เพื่อให้ Software Engineer คนอื่น ๆ สามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพ ~\cite{git}
 	\item Spring Boot
 	
 	Spring Boot คือ เฟรมเวิร์คสำหรับพัฒนา REST API, Websocket, Web และอื่น ๆ ของภาษาที่ใช้ Java Virtual Machine (JVM) ~\cite{spring}
+	
+	\item Hibernate ORM
+	
+	Hiberate ORM คือ เฟรมเวิร์ค Object Relation Mapping ที่จะแปลงออบเจกต์ให้ใช้งานกับฐานข้อมูลประเภท Relational ได้โดยผ่านทาง JDBC (Java Database Connectivity) ซึ่งเป็น API สำหรับภาษา Java เพื่อให้สามารถเข้าถึงฐานข้อมูลได้ ~\cite{hibernate}
+
+	\item Maven
+	
+	Maven คือ ซอฟแวร์จัดการโปรเจค ช่วยลดขั้นตอนในการ Build ซอฟต์แวร์, ทำให้การ Build ซอฟต์แวร์เป็นมีระเบียบมากขึ้นโดยใช้ project object model (POM) ซึ่งเป็นไฟล์ .xml และช่วยจัดการ Dependencies ที่เกี่ยวข้องกับ Project ~\cite{maven}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{pom}  
+		\caption{ตัวอย่างไฟล์ pom.xml ของ Maven}
+		\label{Fig:pom}
+	\end{figure}
+	
+	\item Python
+	
+	Python เป็นภาษาคอมพิวเตอร์ระดับสูงที่ใช้ Python Interpreter มีจุดเด่นที่สามารถอ่านและทำความเข้าใจโค้ดได้ง่าย โดย Python Interpreter นั้น สามารถติดตั้งได้ในหลากหลายระบบปฏิบัติการ ~\cite{python}
+		
+	\item MySQL
+	
+	MySQL เป็นตัวจัดการฐานข้อมูลแบบ Relational ที่เป็น Open source ~\cite{mysql}
+
+	\item Sequel Pro
+	
+	Sequel Pro เป็นแอปพลิเคชันสำหรับจัดการฐานข้อมูล MySQL ~\cite{sequelpro}
+	
+	\item Google BigQuery
+	
+	Google BigQuery เป็นบริการคลังข้อมูลบน Cloud ที่ให้บริการโดย Google และสามารถใช้ SQL เพื่อใช้งาน Google BigQuery ได้ ~\cite{bigquery}
+	
+	\item Git
+	
+	Git คือ Version Control ที่สามารถติดตามและควบคุมการเปลี่ยนแปลงของโค้ดได้ เพื่อให้ Software Engineer คนอื่น ๆ สามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพ ~\cite{git}
+	
+	\item GitKraken
+	
+	GitKraken เป็น Git GUI Client ที่ทำให้สามารถใช้งาน Git ได้อย่างสะดวกสบาย ~\cite{gitkraken}
+
+	\item Postman
+	
+	Postman เป็นแอปพลิเคชันสำหรับสร้างคำร้องขอไปยังเซิร์ฟเวอร์ เช่น REST, SOAP, GraphQL เพื่อทดสอบการทำงาน API (Application Programming Interface) ของเซิร์ฟเวอร์ และสามารถตรวจสอบคำตอบกลับที่ส่งกลับมาได้ ~\cite{postman}
+	
 	\item Docker
 	
-	Docker คือ เทคโนโลยีสำหรับสร้างคอนเทนเนอร์ของซอฟต์แวร์ ทำให้ซอฟต์แวร์สามารถนำไปใช้งานในสภาพแวดล้อมไหนก็ได้ ~\cite{docker}
-	\item Kubernetes
-
-	Kubernetes คือ เทคโนโลยีสำหรับจัดการกลุ่มเครื่องเซิร์ฟเวอร์ มีความสามารถในการจัดการเซิร์ฟเวอร์ให้สามารถทำงานได้อย่างต่อเนื่อง มีจุดเด่นในการทำให้มีช่วงเวลาที่เซิร์ฟเวอร์หยุดทำงานเป็นศูนย์ ~\cite{kubernetes}
+	Docker คือ คอนเทนเนอร์ Engine สำหรับสร้างและจัดการคอนเทนเนอร์ของซอฟต์แวร์ ทำให้ซอฟต์แวร์สามารถนำไปใช้งานในสภาพแวดล้อมไหนก็ได้ โดยเราสามารถเขียน Dockerfile เพื่อสร้างอิมเมจของคอนเทนเนอร์ได้ หรือจะใช้อิมเมจสาธารณะจาก Docker Hub ก็ได้ ~\cite{docker}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{dockerfile}  
+		\caption{ตัวอย่างไฟล์ Dockerfile ในการตั้งค่าเพื่อการสร้างอิมเมจของคอนเทนเนอร์}
+		\label{Fig:dockerfile}
+	\end{figure}
+	
+	\item Kubernetes	
+	
+	Kubernetes คือ Orchestration ของกลุ่มคอนเทนเนอร์และกลุ่มเซิร์ฟเวอร์ มีความสามารถในการจัดการคอนเทนเนอร์ให้สามารถทำงานได้อย่างต่อเนื่อง มีช่วงเวลาหยุดทำงานเป็นศูนย์ 	 ~\cite{kubernetes} โดย Kubernetes ยังมีฟังก์ชันอำนวยความสะดวกอื่น ๆ เช่น
+	\begin{itemize}
+		\item กระจายโหลดที่เข้ามายังคอนเทนเนอร์ เพื่อให้สามารถทำงานได้อย่างมีเสถียรภาพ
+		\item ตั้งค่าให้ Kubernetes จัดสรรทรัพยากรต่าง ๆ กับคอนเทนเนอร์ได้ เช่น หน่วยความจำ และหน่วยประมวลผล เป็นต้น โดย Kubernetes จะจัดการเพื่อให้คอนเทนเนอร์ทำงานได้เต็มประสิทธิภาพตามทรัพยากรที่กำหนดไว้
+		\item เริ่มต้นการทำงานคอนเทนเนอร์ที่หยุดทำงานให้ใหม่ สับเปลี่ยนคอนเทนเนอร์ ลบคอนเทนเนอร์ที่ไม่มีการตอบสนอง และจะไม่อนุญาตให้ใช้งานคอนเทนเนอร์ ถ้าไม่อยู่ในสถานะพร้อมใช้งานจริง ๆ
+		\item เก็บข้อมูลความลับต่าง ๆ ได้ โดยสามารถ Deploy และอัปเดตข้อมูลลับและการตั้งค่า โดยที่ไม่ต้อง Build คอนเทนเนอร์ใหม่
+	\end{itemize}
+	ในการตั้งค่าต่าง ๆ ให้กับ Kubernetes จะต้องเขียนไฟล์ .yaml หรือ .yml ซึ่งเป็นภาษามาตรฐานของชุดข้อมูลสำหรับทุกภาษาโปรแกรมมิ่ง ~\cite{yaml}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.4\textwidth]{k8sconfig}  
+		\caption{ตัวอย่างไฟล์ .yml หรือ .yaml ในการตั้งค่าให้กับ Kubernetes}
+		\label{Fig:cicdyaml}
+	\end{figure}
+	
 	\item Gitlab CI/CD
 	
-	Gitlab CI/CD คือ เครื่องมือในการ Build ซอฟต์แวร์และ Deploy โดยอัตโนมัติ ~\cite{gitlabcicd}
+	Gitlab CI/CD คือ เครื่องมือในการ Build ซอฟต์แวร์และ Deploy โดยอัตโนมัติ โดยเราสามารถตั้งค่าการทำงานของ Gitlab CI/CD ได้จากไฟล์ .gitlab-ci.yml ~\cite{gitlabcicd}
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.35\textwidth]{cicdyaml}  
+		\caption{ตัวอย่างไฟล์ .gitlab-ci.yml ในการตั้งค่าให้กับ Gitlab CI/CD}
+		\label{Fig:cicdyaml}
+	\end{figure}		
 \end{enumerate}
 
-\begin{figure}[!h]
-	\centering
-	\subfigure[]{
-		\label{Fig:technology:intellij}
-		\includegraphics[width=0.15\textwidth]{intellij}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:sequelpro}
-		\includegraphics[width=0.15\textwidth]{sequelpro}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:postman}
-		\includegraphics[width=0.15\textwidth]{postman}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:vscode}
-		\includegraphics[width=0.15\textwidth]{vscode}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:gitkraken}
-		\includegraphics[width=0.15\textwidth]{gitkraken}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:asana-icon}
-		\includegraphics[width=0.15\textwidth]{asana-icon}  
-	}
-	\subfigure[]{
-	\label{Fig:technology:java}
-	\includegraphics[width=0.15\textwidth]{java}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:python}
-		\includegraphics[width=0.15\textwidth]{python}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:mysql}
-		\includegraphics[width=0.25\textwidth]{mysql}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:bigquery}
-		\includegraphics[width=0.25\textwidth]{bigquery}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:git}
-		\includegraphics[width=0.15\textwidth]{git}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:spring-boot}
-		\includegraphics[width=0.15\textwidth]{spring-boot}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:docker}
-		\includegraphics[width=0.15\textwidth]{docker}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:k8s}
-		\includegraphics[width=0.25\textwidth]{k8s}  
-	}
-	\subfigure[]{
-		\label{Fig:technology:gitlab-ci-cd}
-		\includegraphics[width=0.15\textwidth]{gitlab-ci-cd}  
-	}
-	\caption{สัญลักษณ์ของเทคโนโลยีและเครื่องมือต่าง ๆ ที่ใช้ IntelliJ IDEA (ก), Sequel Pro (ข), Postman (ค), Visual Studio Code (ง), GitKraken (จ), Asana (ฉ), Java (ช), Python (ซ), MySQL (ฌ), Google BigQuery (ญ), Git (ฎ), Spring Boot (ฏ), Docker (ฐ), Kubernetes (ฑ), Gitlab CI/CD (ฒ)}
-	\label{Fig:technology}
-\end{figure}
-
+\section{รายละเอียดของงานที่ปฏิบัติ}
+ในการปฏิบัติงานครั้งนี้ได้ทำการพัฒนาระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณาเฉพาะฟังก์ชันหลักที่จำเป็น เพื่อให้สามารถส่งมอบงานได้เร็วที่สุดและสามารถทำงานได้จริง ได้แก่ ฟังก์ชันการจำกัดการแสดงโฆษณาของร้านด้วยจำนวนการคลิกโฆษณา กับฟังก์ชันการส่งอีเมลรายงานผลการโฆษณากลับไปยังลูกค้าโดยอัตโนมัติทุก ๆ สัปดาห์ 
 ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณาที่พัฒนาขึ้นมานั้น ประกอบด้วยเซอร์วิสต่าง ๆ ได้แก่
 
 \begin{figure}[!h]
@@ -250,11 +335,4 @@
 	\includegraphics[width=1\textwidth]{kanban-board.png}  
 	\caption{Kanban Board ที่ตั้งอยู่ในพื้นที่ทำงาน}
 	\label{Fig:kanban-board}
-\end{figure}
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=1\textwidth]{asana}  
-	\caption{ตัวอย่างของโปรแกรม Asana}
-	\label{Fig:asana}
 \end{figure}
