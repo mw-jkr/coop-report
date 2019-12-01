@@ -8,7 +8,18 @@
 \usepackage{wrapfig}
 \usepackage{eso-pic}
 \usepackage{multirow}
+\usepackage[final]{pdfpages}
 \usepackage[labelfont=bf]{caption}
+
+% ##### Set indent after new line on bibliography
+\def\bibindent{2.1em}
+\makeatletter
+\let\old@biblabel\@biblabel
+\def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
+\let\old@bibitem\bibitem
+\def\bibitem#1{\old@bibitem{#1}\leavevmode\kern-\bibindent}
+\makeatother
+
 \graphicspath{ {images/} }
 
 \makeatletter
@@ -113,6 +124,9 @@
     \addcontentsline{toc}{chapter}{บรรณานุกรม}
     \bibliographystyle{IEEEtran}
     \bibliography{reference}
+    
+    \newpage
+    
     
     \startappendix
     \include{appendix}
