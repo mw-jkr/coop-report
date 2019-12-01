@@ -133,38 +133,112 @@
 	
 	\item Ad Report
 	
-	Ad Report เป็นเซอร์วิสใหม่ที่ถูกพัฒนาด้วยภาษา Java ร่วมกับ Spring Boot ทำหน้าที่สร้างอีเมลรายงานสถิติของโฆษณาที่ประกอบไปด้วยข้อมูลต่าง ๆ เช่น จำนวนการแสดงผลโฆษณาต่อวัน, จำนวนผู้ที่คลิกเข้าไปในโฆษณาต่อวัน, จำนวนการคลิกของโฆษณาที่ยังคงเหลือ และจำนวนคลิกของโฆษณาที่ลูกค้าซื้อไว้ เป็นต้น โดยภายในเซอร์วิสนี้ จะมีฟังก์ชันการทำงานหลัก 4 อย่าง ได้แก่
+	Ad Report เป็นเซอร์วิสใหม่ที่ถูกพัฒนาด้วยภาษา Java ร่วมกับ Spring Boot ทำหน้าที่สร้างอีเมลรายงานผลการโฆษณาที่ประกอบไปด้วยข้อมูลต่าง ๆ โดยภายในเซอร์วิสนี้ จะประกอบไปด้วยฟังก์ชันการทำงานหลัก 4 อย่าง ได้แก่
 	\begin{itemize}
 		\item Statistics Updater
 		
-		ฟังก์ชัน Statistics Updater ทำหน้าที่นำข้อมูลของโฆษณาจาก Google BigQuery มาอัปเดตในฐานข้อมูลของ Ad Report กรณีที่ข้อมูลที่เข้ามาเป็นของร้านที่ไม่เคยปรากฏอยู่ในฐานข้อมูลของ Ad Report (เป็นร้านที่ลงโฆษณากับ Wongnai เป็นครั้งแรก) ก็จะทำการเรียกฟังก์ชัน Retrieve Data เพื่อร้องขอข้อมูลจาก Wongnai Core ซึ่งประกอบไปด้วยชื่อร้าน และอีเมลของร้าน นำไปประกอบในการทำรายงานที่สมบูรณ์และส่งอีเมลกลับไปได้
+		ฟังก์ชัน Statistics Updater ทำหน้าที่ดึงข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาบน Wongnai ที่เก็บไว้อยู่ใน Google BigQuery มาอัปเดตลงในฐานข้อมูลของ Ad Report โดยฟังก์ชันนี้จะทำการส่ง Query String ที่เป็น SQL ไปยังตารางขนาดเล็กที่เก็บข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาใน Google BigQuery เพื่อนำข้อมูลในช่วงเวลาที่ต้องการออกม าจากนั้นนำข้อมูลที่ได้มาบันทึกลงในฐานข้อมูล โดย Schema ของตารางที่จะบันทึกข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาในเซอร์วิส Ad Report จะเป็นไปดังต่อไปนี้
+		
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{Field name} & \textbf{Data Type} & \textbf{Description} \\ \hline
+				id & BIGINT & ID ของเหตุการณ์ \\ \hline
+				timestamp & DATETIME & วันเวลาที่เกิดเหตุการณ์ \\ \hline
+				business\_id & BIGINT & ID ของร้านที่เกิดเหตุการณ์ \\ \hline
+				number\_of\_impressions & BIGINT & จำนวนครั้งที่แสดงโฆษณาของร้าน \\ \hline
+				number\_of\_clicks & BIGINT & จำนวนครั้งที่เกิดการคลิกไปที่โฆษณาของร้าน \\ \hline
+			\end{tabular}
+			\caption{Schema ของตารางที่เก็บข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาบน Wongnai ในเซอร์วิส Ad Report}
+			\label{Table:schema-ad-report-1}
+		\end{table}
+		
+		กรณีที่ข้อมูลที่เข้ามาใหม่จากการอัปเดตเป็นข้อมูลของร้านที่ไม่เคยปรากฏอยู่ในฐานข้อมูลของ Ad Report (เป็นร้านที่ลงโฆษณากับ Wongnai เป็นครั้งแรก) ฟังก์ชันนี้ก็จะทำการเรียกใช้งานฟังก์ชัน Retrieve Data เพื่อร้องขอข้อมูลชื่อร้านและอีเมลของร้านที่เข้ามาใหม่จาก Wongnai Core จากนั้นจึงบันทึกข้อมูลของร้านที่ได้มาทั้งหมดลงในอีกตาราง ซึ่งตารางนี้จะทำหน้าที่ในการเก็บข้อมูลของร้านเพื่อนำไปประกอบในการสร้างรายงานและการส่งอีเมล 
+		
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\textbf{Field name} & \textbf{Data Type} & \textbf{Description} \\ \hline
+				business\_id & BIGINT & ID ของร้าน \\ \hline
+				business\_name & VARCHAR(255) & ชื่อร้าน \\ \hline
+				business\_email & VARCHAR(255) & อีเมลของร้าน \\ \hline
+			\end{tabular}
+			\caption{Schema ของตารางที่เก็บข้อมูลร้านในเซอร์วิส Ad Report}
+			\label{Table:schema-ad-report-2}
+		\end{table}
+		
 		\item Report
 		
-		ฟังก์ชัน Report ทำหน้าที่สร้างรายงานที่จะส่งไปพร้อมกับอีเมลให้กับลูกค้า
+		ฟังก์ชัน Report ทำหน้าที่สร้างรายงานที่จะส่งไปพร้อมกับอีเมลให้กับลูกค้า โดยฟังก์ชันนี้จะทำการสร้างรายงานเป็นไฟล์นามสกุล .pdf จากเทมเพลตของรายงานที่เตรียมไว้ โดยเทมเพลตของรายงานจะเป็นไฟล์ที่ถูกแก้ไขมาแล้วบางส่วนให้ตรงกับที่ UX/UI Designer ออกแบบไว้ ซึ่งการจัดการไฟล์ .pdf จะใช้ไลบรารี iText มาช่วยในการทำงาน ส่วนการสร้างแผนภูมิจะใช้ไลบรารี XChart สำหรับการทำงานของฟังก์ชัน Report นั้น จะเป็นไปตามรูปที่ 3.4
+		
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=0.5\textwidth]{report-diagram}  
+			\caption{แผนผังการทำงานของฟังก์ชัน Report}
+			\label{Fig:report-diagram}
+		\end{figure}
+		
 		\item Report Email
 		
-		ฟังกชัน Report Email ทำหน้าที่สร้างอีเมลพร้อมกับแนบไฟล์รายงานที่ได้จากฟังก์ชัน Report ส่งไปยังอีเมลของลูกค้า
+		ฟังกชัน Report Email ทำหน้าที่สร้างอีเมลพร้อมกับแนบไฟล์รายงานที่ได้จากฟังก์ชัน Report ส่งไปยังอีเมลของลูกค้า ในที่นี้ได้ใช้คลาส EmailService ซึ่งเป็นคลาสที่มีอยู่แล้วในเฟรมเวิร์คของทาง Wongnai เพื่อทำการส่งอีเมล และใช้ Rocker Templates by Fizzed เป็นเทมเพลตสำหรับการเขียนอีเมลด้วย HTML ที่สามารถใช้คู่กับภาษา Java ได้ และมีประสิทธิภาพที่สูงในแง่ของความเร็วในการเรนเดอร์เทมเพลต ~\cite{rocker}
+			
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=0.65\textwidth]{email-diagram}  
+			\caption{แผนผังการทำงานของฟังก์ชัน Report Email}
+			\label{Fig:email-diagram}
+		\end{figure}
+			
 		\item Retrieve Data
 		
-		ฟังกชัน Retrieve Data ทำหน้าหน้าที่ร้องขอข้อมูลที่จำเป็นจาก Wongnai Core โดยใช้โปรโตคอล HTTP เพื่อนำไปใช้ในการสร้างรายงานและการส่งอีเมลที่สมบูรณ์
+		ฟังกชัน Retrieve Data ทำหน้าหน้าที่ร้องขอข้อมูลที่จำเป็นจาก Wongnai Core เพื่อนำไปใช้ในการสร้างรายงานและการส่งอีเมลที่สมบูรณ์ โดยภายในฟังก์ชันนี้จะใช้คลาส RestTemplate ที่เป็นคลาสที่มีให้ในเฟรมเวิร์ค Spring Boot สำหรับการสร้างคำร้องขอแบบ REST ไปยัง API ของ Wongnai Core ทั้ง 2 API ได้แก่ API สำหรับดึงข้อมูลของร้าน กับ API สำหรับดึงข้อมูลจำนวนคลิกโฆษณาของร้าน ซึ่งได้อธิบายไว้แล้วก่อนหน้า
 	\end{itemize}
-	โดยภายใน Ad Report จะมี Cron ซึ่งเป็นเครื่องมือของ Unix ที่จะทำให้สามารถรัน Command Line หรือ Shell Scripts ตามช่วงเวลาที่เรากำหนดไว้ได้โดยอัตโนมัติ ในที่นี้ได้มีการนำ Cron ไปใช้งาน 2 ส่วน ได้แก่
+
+	ภายในเซอร์วิส Ad Report จะมีคลาสที่เป็น ApplicationRunner อยู่อีกสองคลาส นอกเหนือจาก ApplicationRunner หลักที่เอาไว้รันเซอร์วิส Ad Report ถูกสร้างขึ้นมาเพื่อใช้ในการรัน Task โดยอัตโนมัติด้วย CronJob ที่ Kubernetes โดยทั้งสองคลาสจะมีรายละเอียดดังต่อไปนี้
+
 	\begin{itemize}
-		\item Daily Statistics Updater
-		
-		Daily Statistics Updater จะเรียกใช้งานฟังก์ชัน Statistics Updater ทุก ๆ วัน เพื่ออัปเดตฐานข้อมูลของ Ad Report
 		\item Weekly Report Email
 		
-		Weekly Report Email จะเรียกใช้งานฟังก์ชัน Report และ Report Email เพื่อสร้างรายงานสถิติของโฆษณาและส่งอีเมลกลับไปยังลูกค้าทุก ๆ สัปดาห์ ซึ่งจะส่งให้เฉพาะร้านที่ยังจำนวนคลิกโฆษณาคงเหลืออยู่ โดยดูจากข้อมูลที่ร้องขอมาจากฟังก์ชัน Retrieve Data
+		Weekly Report Email  เป็น ApplicationRunner Class ที่จะเรียกใช้งานฟังก์ชัน Report Email เพื่อสร้างรายงานผลการโฆษณาและส่งอีเมลกลับไปยังลูกค้าทุก ๆ สัปดาห์ ซึ่งจะส่งให้เฉพาะร้านที่ยังจำนวนคลิกโฆษณาคงเหลืออยู่ (กรณีที่ไม่มีจำนวนคลิกโฆษณาคงเหลือจะไม่ส่งแบบอัตโนมัติให้ เพราะถือว่าเป็นร้านที่โฆษณาหมดอายุไปแล้ว) โดยดูจากข้อมูลที่ร้องขอมาจากฟังก์ชัน Retrieve Data
+	
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=0.55\textwidth]{weekly-report-email}  
+			\caption{แผนผังการทำงานของ ApplicationRunner Class Weekly Report Email}
+			\label{Fig:weekly-report-diagram}
+		\end{figure}
+	
+		\item Daily Statistics Updater
+	
+		Daily Statistics Updater เป็น ApplicationRunner Class ที่จะเรียกใช้งานฟังก์ชัน Statistics Updater ทุก ๆ วัน เพื่ออัปเดตฐานข้อมูลเหตุการณ์ของโฆษณาบน Wongnai ของ Ad Report
 	\end{itemize}
+
+	นอกจากนี้เซอร์วิส Ad Report จะมีหน้าแอดมินสำหรับให้พนักงานที่เกี่ยวข้องมาใช้งานได้ โดยวิธีการพัฒนาหน้าแอดมินนั้นจะใช้เฟรมเวิร์ค admin-ui ที่ Wongnai มีให้อยู่แล้ว ซึ่ง admin-ui เป็นเฟรมเวิร์คที่ใช้ React ซึ่งเป็นไลบรารีสำหรับการสร้าง User Interface ให้กับเว็บไซต์ด้วยภาษา Javascript ~\cite{react} ถูกพัฒนามาสำหรับสร้างหน้าแอดมินให้กับเซอร์วิสใหม่ที่แยกออกมาจาก Wongnai Core โดยเราสามารถนำเฟรมเวิร์คนี้มาใช้ได้ทันที โดยที่ไม่จำเป็นต้องเขียนโค้ดอะไรเพิ่มเติมมากนัก แต่ในเซอร์วิส Ad Report นั้นต้องมี Action ในหน้าแอดมินที่สามารถส่งอีเมลรายงานด้วยตนเอง กรณีที่ระบบอัตโนมัติเกิดข้อผิดพลาดใด ๆ ก็ตาม ในการสร้าง Action ใน admin-ui จำเป็นต้องสร้าง API เพิ่มขึ้นมาในเซอร์วิส Ad Report โดย API ที่เพิ่มขึ้นมาจะทำการส่งอีเมลรายงานผลการโฆษณาให้กับลูกค้า ทันทีที่ได้รับการร้องขอ
+	
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\textbf{API Name} & \textbf{Method} & \multicolumn{2}{c|}{\textbf{URL}} \\ \hline
+			sendWeeklyReportEmail & POST & \multicolumn{2}{l|}{\begin{tabular}[c]{@{}l@{}}https://\{url\}/admin/\\ business-information/\\ send-weekly-report-email/\\ \{buinessId\}\end{tabular}} \\ \hline
+			\multicolumn{4}{|c|}{\textbf{Request Path Parameter}} \\ \hline
+			\textbf{Parameter Name} & \textbf{M/O} & \textbf{SV/MV} & \textbf{Data Type} \\ \hline
+			businessId & M & SV & String \\ \hline
+		\end{tabular}
+	\caption{ตารางรายละเอียดของ API สำหรับการสร้าง Action ส่งอีเมลรายงานผลการโฆษณาในหน้าแอดมิน}
+	\label{Table:api-detail-3}
+	\end{table}
+
+	เฟรมเวิร์ค admin-ui จะคอยจัดการสิทธิ์การเข้าถึงหน้าแอดมินให้ โดยที่เราไม่จำเป็นต้องแนบพารามิเตอร์ใดเพิ่มเติม ๆ เข้าไปในคำร้องขอเพื่อยืนยันสิทธิ์การเข้าถึงหน้าแอดมิน เมื่อเราทำการส่งคำร้องขอไปที่ API นี้แล้ว ถ้าส่งอีเมลสำเร็จ จะได้คำตอบกลับ HTTP ที่มีสถานะเป็น 200 OK กลับมา แต่ถ้าไม่สำเร็จจะได้คำตอบกลับที่มีสถานะเป็น 4XX หรือ 5XX กลับมา ขึ้นอยู่กับว่าภายในเกิดข้อผิดพลาดอะไร
 \end{enumerate}
 
-เซอร์วิสทั้งหมดที่กล่าวมาข้างต้นจะใช้ Docker สร้างอิมเมจของแต่ละเซอร์วิสสำหรับเซอร์วิส และเซิร์ฟเวอร์ที่รันคอนเทนเนอร์ของอิมเมจของแต่ละเซอร์วิสจะถูกจัดการด้วย Kubernetes ทั้งหมด
+เซอร์วิสทั้งหมดที่กล่าวมาทั้งหมดจะถูกทำให้เป็นคอนเทนเนอร์โดยใช้ Docker เพื่อให้สะดวกต่อการ Deploy ด้วย Kubernetes โดยแต่ละเซอร์วิสก็จะมี Dockerfile ไว้สำหรับการสร้างคอนเทนเนอร์อิมเมจของเซอร์วิสนั้น ๆ สำหรับ Ad Report ซึ่งเป็นเซอร์วิสใหม่นั้น ได้ทำการเพิ่มไฟล์ .gitlab-ci.yml สำหรับใช้งาน Gitlab CI/CD เพื่อให้ทำการ Build โค้ด, สร้างคอนเทนเนอร์อิมเมจ, นำอิมเมจไปจัดเก็บใน Private Image Registry ซึ่งเป็นพื้นที่สำหรับจัดเก็บอิมเมจของ Wongai และ Deploy เซอร์วิสโดยอัตโนมัติ สำหรับการตั้งค่าให้กับ Kubernetes เพื่อนำคอนเทนเนอร์อิมเมจที่สร้างมาไป Deploy เป็นบนเซิร์ฟเวอร์ จะมี Project Eastern ซึ่งเป็นไลบรารีที่เป็นเทมเพลตในการตั้งค่า Kubernetes และช่วยจัดการ Environment ที่จะ Deploy ให้ ~\cite{eastern} 
+
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{gitlab-flow.png}  
+	\includegraphics[width=1\textwidth]{gitlab-flow.png}  
 	\caption{แผนผังวิธีการ Deploy โค้ดชุดใหม่ของเซอร์วิส Ad Report}
 	\label{Fig:adreport-diagram}
 \end{figure}
-
-สำหรับ Ad Report ซึ่งเป็นเซอร์วิสใหม่นั้น ได้ทำการเพิ่มสคริปสำหรับใช้งาน Gitlab CI/CD เพื่อให้ทำการ Build โค้ด, สร้างอิมเมจ Docker, นำไปจัดเก็บใน Image Registry ที่เป็นพื้นที่สำหรับจัดเก็บอิมเมจ และ Deploy เซอร์วิสโดยอัตโนมัติ การนำอิมเมจ Docker ที่ได้ไป Deploy เป็นคอนเทนเนอร์บนเครื่องเซิร์ฟเวอร์จะมี Project Eastern ซึ่งเป็นไลบรารีที่ช่วย Deploy คอนเทนเนอร์บน Kubernetes และช่วยจัดการ Environment ที่จะ Deploy ให้ ~\cite{eastern} 
