@@ -115,7 +115,7 @@
 
 %สร้างคำสั่งใหม่สำหรับตรวจสอบว่าบรรทัดปัจจุบัน หรือ จำนวนหัวข้อที่แสดงในสารบัญเกินค่าทึ่กำหนดหรือยัง หากเกินแล้วให้ตัดขึ้นหน้าใหม่ รีเซตตัวนับ tocitem รีเซตตัวนับบรรทัดใหม่ และเขียนหัวของหน้าสารบัญใหม่ (เช่น สารบัญ (ต่อ) ในกรณีนี้)
 \newcommand{\tocheadcont}[3]{
-	\ifthenelse{#1>31 \OR #2>31}{
+	\ifthenelse{#1>29 \OR #2>29}{
 		%Should be a newpage here.
 		\pagebreak[4]
 		\resetlinenumber[1]
@@ -143,7 +143,7 @@
 
 % ##### LOT Overrided 
 \newcommand{\lotheadcont}[3]{
-	\ifthenelse{#1>29 \OR #2>29}{
+	\ifthenelse{#1>26 \OR #2>26}{
 		%Should be a newpage here.
 		\pagebreak[4]
 		\resetlinenumber[1]
@@ -175,7 +175,7 @@
 
 % ##### LOF Overrided 
 \newcommand{\lofheadcont}[3]{
-	\ifthenelse{#1>29 \OR #2>29}{
+	\ifthenelse{#1>26 \OR #2>26}{
 		%Should be a newpage here.
 		\pagebreak[4]
 		\resetlinenumber[1]

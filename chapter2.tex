@@ -15,13 +15,13 @@
 
 \section{แนวคิดและทฤษฎีที่เกี่ยวข้อง}
 \begin{enumerate}
-	\item Cost Per Click (CPC)
+	\item \textbf{Cost Per Click (CPC)}
 	
 	CPC เป็นรูปแบบการโฆษณาผ่านทางอินเตอร์เน็ตอย่างหนึ่ง เพื่อเป็นการเพิ่มยอดผู้ชมของเว็บไซต์  โดยจะเสียค่าใช้จ่ายก็ต่อเมื่อมีการคลิกไปยังโฆษณาที่แสดงไว้ ~\cite{cpc}
 	
-	\item ไมโครเซอร์วิส
+	\item \textbf{ไมโครเซอร์วิส}
 	
-	ไมโครเซอร์วิสเป็นสถาปัตยกรรมที่เกิดขึ้นจากสถาปัตยกรรมเชิงบริการ (Service-Oriented Architecture) โดยจะแยกแอปพลิเคชันออกเป็นเซอร์วิสขนาดเล็ก มีความสามารถในการจัดการด้วยตัวเอง, มีความเป็นอิสระต่อกัน และมีความยิดหยุ่นพร้อมต่อการเปลี่ยนแปลง ~\cite{microservices} โดยแต่ละเซอร์วิสนั้นจะมีฐานข้อมูลเป็นของตัวเองหรือจะไม่มีก็ได้ แต่จะไม่ใช้ฐานข้อมูลร่วมกัน และเซอร์วิสสามารถเรียกใช้งานอีกเซอร์วิสหนึ่งได้ แต่อีกเซอร์วิสหนึ่งจะไม่ไปเรียกใช้งานอีกเซอร์วิส เช่น เซอร์วิส 3 เรียกใช้งานเซอร์วิส 2 แต่เซอร์วิส 2 จะไม่ไปเรียกใช้งานเซอร์วิส 3 ทั้งนี้เพื่อไม่ให้เป็นการทำให้เซอร์วิส 2 เซอร์วิสถูกผูกมัดซึ่งกัน
+	ไมโครเซอร์วิสเป็นสถาปัตยกรรมที่เกิดขึ้นจากสถาปัตยกรรมเชิงบริการ (Service-Oriented Architecture) โดยจะแยกแอปพลิเคชันออกเป็นเซอร์วิสขนาดเล็ก มีความสามารถในการจัดการด้วยตัวเอง, มีความเป็นอิสระต่อกัน และมีความยิดหยุ่นพร้อมต่อการเปลี่ยนแปลง ~\cite{microservices} โดยแต่ละเซอร์วิสนั้นจะมีฐานข้อมูลเป็นของตัวเองหรือจะไม่มีก็ได้ แต่จะไม่ใช้ฐานข้อมูลร่วมกัน และเซอร์วิสสามารถเรียกใช้งานอีกเซอร์วิสหนึ่งได้ แต่อีกเซอร์วิสหนึ่งจะไม่ไปเรียกใช้งานอีกเซอร์วิส ดังตัวอย่างจากรูปที่ 2.1 จะสามารถอธิบายได้ว่า เซอร์วิส 3 เรียกใช้งานเซอร์วิส 2 แต่เซอร์วิส 2 จะไม่ไปเรียกใช้งานเซอร์วิส 3 ทั้งนี้เพื่อไม่ให้เป็นการทำให้เซอร์วิส 2 เซอร์วิสถูกผูกมัดซึ่งกัน
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=0.7\textwidth]{microservices}  
@@ -29,13 +29,13 @@
 		\label{Fig:microservices}
 	\end{figure}
 
-	\item REST (Representational state transfer)
+	\item \textbf{REST (Representational state transfer)}
 
 	REST เป็นสถาปัตยกรรมซอฟต์แวร์อย่างหนึ่งในการสร้างเว็บเซอร์วิส ทำให้แต่ละเซอร์วิสสามารถทำงานร่วมกันได้ผ่านเครือข่ายอินเตอร์เน็ต มักจะใช้ HTTP (Hypertext Transfer Protocol) เป็นโปรโตคอลในการสื่อสาร โดย HTTP นั้นเป็นโปรโตคอลแบบ Stateless ทำให้มีสมรรถภาพสูง, มีความน่าเชื่อถือ และมีความสามารถในการนำกลับไปใช้ใหม่ได้โดยไม่กระทบกับระบบส่วนอื่นแม้ว่าระบบกำลังทำงานอยู่ก็ตาม ~\cite{rest}
 	
-	\item HTTP (Hypertext Transfer Protocol)
+	\item \textbf{HTTP (Hypertext Transfer Protocol)}
 	
-	HTTP เป็นโปรโตคอลในการส่งข้อมูลบนเว็บ เป็นโปรโตคอลแบบไคลเอนต์-เซิร์ฟเวอร์ โดยไคลเอนต์จะส่งคำร้องขอข้อมูลไปยังเซิร์ฟเวอร์ จากนั้นเซิร์ฟเวอร์ก็จะส่งคำตอบกลับมาที่ไคลเอนต์ ~\cite{http}
+	HTTP เป็นโปรโตคอลในการส่งข้อมูลบนเว็บ เป็นโปรโตคอลแบบไคลเอนต์-เซิร์ฟเวอร์ โดยไคลเอนต์จะส่งคำร้องขอข้อมูลไปยังเซิร์ฟเวอร์ จากนั้นเซิร์ฟเวอร์ก็จะส่งคำตอบกลับมาที่ไคลเอนต์ จากรูปที่ 2.2 จะเป็นตัวอย่างของการสื่อสารด้วยโปรโตคอล HTTP ~\cite{http}
 
 	\begin{figure}[!h]
 		\centering
@@ -44,29 +44,29 @@
 		\label{Fig:http}
 	\end{figure}
 
-	\item Repository Pattern
+	\item \textbf{Repository Pattern}
 	
-	Repository Pattern เป็นรูปแบบหนึ่งในการออกแบบเซอร์วิส โดย Repository เป็นคลาสที่ห่อหุ้มลอจิกต่าง ๆ ที่เอาไว้เข้าถึงแหล่งข้อมูล ทำให้สามารถเข้าถึงข้อมูลเพียงแค่ใช้ฟังก์ชัน, ง่ายต่อการดูแลรักษา และแยกส่วนการทำงานระหว่างเทคโนโลยีที่เอาไว้เข้าถึงแหล่งข้อมูลออกจากโดเมนเลเยอร์ของโมเดล ~\cite{repositorypattern} ยกตัวอย่างเช่น มีคลาสของออบเจ็กต์ชื่อว่า Product และออบเจ็กต์ถูกเก็บอยู่ในฐานข้อมูล เมื่อมีลอจิกทางธุรกิจใดก็ตามที่ต้องการค้นหา Product ตามชื่อที่ต้องการ เราสามารถใช้เมธอด findByName ของคลาส ProductRepository เพื่อทำการค้นคืนข้อมูลออบเจ็กต์ Product ที่เราต้องการได้ทันที
+	Repository Pattern เป็นรูปแบบหนึ่งในการออกแบบเซอร์วิส โดย Repository เป็นคลาสที่ห่อหุ้มลอจิกต่าง ๆ ที่เอาไว้เข้าถึงแหล่งข้อมูล ทำให้สามารถเข้าถึงข้อมูลเพียงแค่ใช้ฟังก์ชัน, ง่ายต่อการดูแลรักษา และแยกส่วนการทำงานระหว่างเทคโนโลยีที่เอาไว้เข้าถึงแหล่งข้อมูลออกจากโดเมนเลเยอร์ของโมเดล ~\cite{repositorypattern} จากตัวอย่างในรูปที่ 2.3 จะมีคลาสของออบเจ็กต์ชื่อว่า Product และออบเจ็กต์ถูกเก็บอยู่ในฐานข้อมูล เมื่อมีลอจิกทางธุรกิจใดก็ตามที่ต้องการค้นหา Product ตามชื่อที่ต้องการ เราสามารถใช้เมธอด findByName ของคลาส ProductRepository เพื่อทำการค้นคืนข้อมูลออบเจ็กต์ Product ที่เราต้องการได้ทันที
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.525\textwidth]{repository}  
+		\includegraphics[width=0.495\textwidth]{repository}  
 		\caption{แผนผังแสดงตัวอย่างของ Repository Pattern}
 		\label{Fig:repository}
 	\end{figure}
 	
-	\item Object-Relational Mapper (ORM)
+	\item \textbf{Object-Relational Mapper (ORM)}
 	
 	Object-Relational Mapper เป็นการแปลงออบเจ็กต์ที่เกิดขึ้นจากแนวคิดการเขียนโปรแกรมเชิงวัตถุ (Object-Oriented Programing) ให้สามารถใช้งานกับฐานข้อมูลประเภท Relational ได้ ~\cite{orm} ยกตัวอย่างเช่น คลาส Product มีคุณลักษณะต่าง ๆ ได้แก่ id, name และ price เมื่อนำ ORM มาใช้เพื่อแปลงออบเจ็กต์ของคลาสนี้ไปอยู่ในรูปของ Relation ก็จะได้ Relation ที่มีโครงสร้างดังรูปที่ 2.4
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.75\textwidth]{orm}  
-		\caption{ตัวอย่างของการแปลงออบเจ็กต์ของคลาสไปเป็น Relation ด้วย Object-Relational Mapper}
+		\includegraphics[width=0.65\textwidth]{orm}  
+		\caption{ตัวอย่างการแปลงออบเจ็กต์ของคลาสไปเป็น Relation ด้วย Object-Relational Mapper}
 		\label{Fig:orm}
 	\end{figure}
 	
-	\item คอนเทนเนอร์
+	\item \textbf{คอนเทนเนอร์}
 	
 	คอนเทนเนอร์เป็นหน่วยของซอฟต์แวร์ที่ทำการบรรจุโค้ดและส่วนอื่น ๆ ที่เกี่ยวข้องเอาไว้ทั้งหมดเพื่อให้สามารถรันได้ทันทีในสภาพแวดล้อมใดก็ได้ มีความเป็นมาตรฐาน และประหยัดทรัพยากร เนื่องจากในการรันหลาย ๆ แอปพลิเคชันที่เป็นคอนเทนเนอร์พร้อมกันจะใช้แค่ระบบปฏิบัติการเดียว
 	
@@ -80,13 +80,13 @@
 			\label{Fig:infra:vm}
 			\includegraphics[width=0.5\textwidth]{vm-infra}  
 		}
-		\caption{แผนผังแสดงโครงสร้างเบื้องต้นภายในเซิร์ฟเวอร์เมื่อทำการใช้งาน Docker (ก) กับ Virtual Machine (ข)}
+		\caption{แผนผังแสดงโครงสร้างเบื้องต้นภายในเซิร์ฟเวอร์เมื่อทำการใช้งานคอนเทนเนอร์ (ก) กับ Virtual Machine (ข)}
 		\label{Fig:infra}
 	\end{figure}
 
-	จากรูป 2.5 (ข) แสดงให้เห็นว่า Virtual Machine ทั้งหมดจำเป็นต้องมีระบบปฏิบัติการเป็นของตนเอง ทำให้สิ้นเปลืองทรัพยากรของเซิร์ฟเวอร์โดยไม่จำเป็น แต่คอนเทนเนอร์สามารถรันร่วมกันได้โดยใช้ระบบปฏิบัติการร่วมกัน และมี Engine เป็นตัวจัดการการทำงานของแต่ละคอนเทนเนอร์ ทำให้ประหยัดทรัพยากรของเซิร์ฟเวอร์ และประหยัดค่าใช้จ่ายในเรื่องลิขสิทธิ์ของระบบปฏิบัติการที่ใช้รันเซิร์ฟเวอร์ ~\cite{container}
+	จากรูป 2.5 แสดงให้เห็นว่า Virtual Machine ทั้งหมดจำเป็นต้องมีระบบปฏิบัติการเป็นของตนเอง ทำให้สิ้นเปลืองทรัพยากรของเซิร์ฟเวอร์โดยไม่จำเป็น แต่คอนเทนเนอร์สามารถรันร่วมกันได้โดยใช้ระบบปฏิบัติการร่วมกัน และมี Engine เป็นตัวจัดการการทำงานของแต่ละคอนเทนเนอร์ ทำให้ประหยัดทรัพยากรของเซิร์ฟเวอร์ และประหยัดค่าใช้จ่ายในเรื่องลิขสิทธิ์ของระบบปฏิบัติการที่ใช้รันเซิร์ฟเวอร์ ~\cite{container}
 	
-	\item Orchestration
+	\item \textbf{Orchestration}
 	
 	Orchestration เป็นตัวจัดการระบบคอมพิวเตอร์และซอฟต์แวร์ รวมไปการตั้งค่าต่าง ๆ และการประสานงานกับซอฟต์แวร์อื่น ๆ โดยอัตโนมัติ ~\cite{orchestration}
 	
@@ -94,9 +94,9 @@
 
 \section{เครื่องมือและเทคโนโลยีที่ใช้ในการปฏิบัติงาน}
 \begin{enumerate}
-	\item IntelliJ IDEA
+	\item \textbf{IntelliJ IDEA}
 	
-	IntelliJ IDEA เป็น Integrate Development Environment (IDE) สำหรับใช้ในการพัฒนาซอฟต์แวร์ที่ใช้ Java Virtual Machine (JVM) โดยเฉพาะ มีระบบแนะนำการเขียนโค้ดกับระบบเติมคำอัตโนมัติที่ทำให้การเขียนโค้ดเป็นไปอย่างราบรื่นและรวดเร็ว ~\cite{intellij}
+	IntelliJ IDEA เป็น Integrate Development Environment (IDE) สำหรับใช้ในการพัฒนาซอฟต์แวร์ที่ใช้ Java Virtual Machine (JVM) โดยเฉพาะ มีระบบแนะนำการเขียนโค้ดกับระบบเติมคำอัตโนมัติ ทำให้การเขียนโค้ดเป็นไปอย่างราบรื่นและรวดเร็ว โดยรูปที่ 2.6 จะเป็นตัวอย่างของระบบดังกล่าว ~\cite{intellij}
 	
 	\begin{figure}[!h]
 		\centering
@@ -112,97 +112,89 @@
 		\label{Fig:intellij}
 	\end{figure}
 	
-	\item Visual Studio Code
+	\item \textbf{Visual Studio Code}
 	
-	Visual Studio Code เป็น Text Editor ที่รองรับได้หลากหลายภาษา มีระบบไฮไลท์ Syntax ในการตรวจสอบ Syntax ของโค้ด และสามารถติดตั้งส่วนขยายต่าง ๆ เพิ่มเติมได้ตามความเหมาะสมในการทำงาน ~\cite{vscode}
+	Visual Studio Code เป็น Text Editor ที่สามารถรองรับภาษาโปรแกรมมิ่งได้หลากหลายภาษา มีระบบไฮไลท์ Syntax ในการตรวจสอบ Syntax ของโค้ด ช่วยลดความผิดพลาดจากการเขียนโค้ดผิด Syntax ของภาษาโปรแกรมมิ่ง และสามารถติดตั้งส่วนขยายต่าง ๆ  เพิ่มเติมได้ตามความเหมาะสมในการทำงาน ~\cite{vscode}
 	
-	\item Java
+	\item \textbf{Java}
 	
-	Java เป็นภาษาคอมพิวเตอร์ประเภท Object-Oriented เมื่อคอมไพล์แล้วจะได้ bytecode โดยเราสามารถนำ bytecode นี้ ไปใช้งานบนคอมพิวเตอร์เครื่องไหนก็ได้ที่มี Java Virtual Machine (JVM) ~\cite{java}
+	Java เป็นภาษาโปรแกรมมิ่งที่รองรับการเขียนโปรแกรมแบบ Object-Oriented เมื่อทำการคอมไพล์ไฟล์ .java แล้ว จะได้เป็น bytecode ออกมา โดยเราสามารถนำ bytecode ไปรันบนคอมพิวเตอร์เครื่องไหนก็ได้ที่ติดตั้ง Java Virtual Machine (JVM) ไว้ ~\cite{java}
 	
-	\item Spring Boot
+	\item \textbf{Spring Boot}
 	
-	Spring Boot คือ เฟรมเวิร์คสำหรับพัฒนา REST API, Websocket, Web และอื่น ๆ ของภาษาที่ใช้ Java Virtual Machine (JVM) ~\cite{spring}
+	Spring Boot คือ เฟรมเวิร์คของภาษาโปรแกรมมิ่งที่ใช้ Java Virtual Machine (JVM) สำหรับช่วยในการพัฒนา REST API, Websocket, Web และอื่น ๆ โดยเฟรมเวิร์คนี้ถูกออกแบบมาเพื่อสร้างแอปพลิเคชันแล้วสามารถนำไปใช้ได้ทันที โดยที่ไม่จำเป็นต้องตั้งค่าอะไรเพิ่มเติม ~\cite{spring}
 	
-	\item Hibernate ORM
+	\item \textbf{Hibernate ORM}
 	
 	Hiberate ORM คือ เฟรมเวิร์ค Object Relation Mapping ที่จะแปลงออบเจกต์ให้ใช้งานกับฐานข้อมูลประเภท Relational ได้โดยผ่านทาง JDBC (Java Database Connectivity) ซึ่งเป็น API สำหรับภาษา Java เพื่อให้สามารถเข้าถึงฐานข้อมูลได้ ~\cite{hibernate}
 
-	\item Maven
+	\item \textbf{Maven}
 	
-	Maven คือ ซอฟแวร์จัดการโปรเจค ช่วยลดขั้นตอนในการ Build ซอฟต์แวร์, ทำให้การ Build ซอฟต์แวร์เป็นมีระเบียบมากขึ้นโดยใช้ Project Object Model (POM) ซึ่งเป็นไฟล์ .xml และช่วยจัดการ Dependencies ที่เกี่ยวข้องกับ Project ~\cite{maven}
+	Maven คือ ซอฟแวร์จัดการโปรเจค ช่วยลดขั้นตอนในการ Build ซอฟต์แวร์, ทำให้การ Build ซอฟต์แวร์เป็นมีระเบียบมากขึ้นโดยใช้ Project Object Model (POM) ซึ่งเป็นจะไฟล์ .xml ดังรูปที่ 2.7 เราสามารถตั้งค่าต่าง ๆ ให้กับโปรเจคและจัดการ Dependencies ที่เกี่ยวข้องกับโปรเจคโดยใช้ไฟล์ pom.xml ~\cite{maven}
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.7\textwidth]{pom}  
+		\includegraphics[width=0.695\textwidth]{pom}  
 		\caption{ตัวอย่างไฟล์ pom.xml ของ Maven}
 		\label{Fig:pom}
 	\end{figure}
 	
-	\item Python
+	\item \textbf{Python}
 	
-	Python เป็นภาษาคอมพิวเตอร์ระดับสูงที่ใช้ Python Interpreter มีจุดเด่นที่สามารถอ่านและทำความเข้าใจโค้ดได้ง่าย โดย Python Interpreter นั้น สามารถติดตั้งได้ในหลากหลายระบบปฏิบัติการ ~\cite{python}
+	Python เป็นภาษาโปรแกรมมิ่งที่เป็น Interpreter มีจุดเด่นที่สามารถอ่านและทำความเข้าใจโค้ดได้ง่ายและ Interpreter ของ Python นั้น สามารถติดตั้งได้ในหลายระบบปฏิบัติการ ~\cite{python}
 		
-	\item MySQL
+	\item \textbf{MySQL}
 	
 	MySQL เป็นตัวจัดการฐานข้อมูลแบบ Relational ที่เป็น Open source ~\cite{mysql}
-
-	\item Sequel Pro
 	
-	Sequel Pro เป็นแอปพลิเคชันสำหรับจัดการฐานข้อมูล MySQL ~\cite{sequelpro}
-	
-	\item Google BigQuery
+	\item \textbf{Google BigQuery}
 	
 	Google BigQuery เป็นบริการคลังข้อมูลบน Cloud ที่ให้บริการโดย Google และสามารถใช้ SQL เพื่อใช้งาน Google BigQuery ได้ ~\cite{bigquery}
 	
-	\item Git
+	\item \textbf{Git}
 	
 	Git คือ Version Control ที่สามารถติดตามและควบคุมการเปลี่ยนแปลงของโค้ดได้ เพื่อให้ Software Engineer คนอื่น ๆ สามารถทำงานร่วมกันได้อย่างมีประสิทธิภาพ ~\cite{git}
-	
-	\item GitKraken
-	
-	GitKraken เป็น Git GUI Client ที่ทำให้สามารถใช้งาน Git ได้อย่างสะดวกสบาย ~\cite{gitkraken}
 
-	\item Postman
+	\item \textbf{Postman}
 	
 	Postman เป็นแอปพลิเคชันสำหรับสร้างคำร้องขอไปยังเซิร์ฟเวอร์ เช่น REST, SOAP, GraphQL เพื่อทดสอบการทำงาน API (Application Programming Interface) ของเซิร์ฟเวอร์ และสามารถตรวจสอบคำตอบกลับที่ส่งกลับมาได้ ~\cite{postman}
 	
-	\item Docker
+	\item \textbf{Docker}
 	
-	Docker คือ คอนเทนเนอร์ Engine สำหรับสร้างและจัดการคอนเทนเนอร์ของซอฟต์แวร์ ทำให้ซอฟต์แวร์สามารถนำไปใช้งานในสภาพแวดล้อมไหนก็ได้ โดยเราสามารถเขียน Dockerfile เพื่อสร้างอิมเมจของคอนเทนเนอร์ได้ หรือจะใช้อิมเมจสาธารณะจาก Docker Hub ก็ได้ ~\cite{docker}
+	Docker คือ คอนเทนเนอร์ Engine สำหรับสร้างและจัดการคอนเทนเนอร์ของซอฟต์แวร์ ทำให้ซอฟต์แวร์สามารถนำไปใช้งานในสภาพแวดล้อมไหนก็ได้ ~\cite{docker} โดยเราสามารถตั้งค่าการสร้างคอนเทนเนอร์อิมเมจได้จาก Dockerfile หรือจะใช้อิมเมจสาธารณะจาก Docker Hub ก็ได้ จากรูปที่ 2.8 เป็นตัวอย่าง Dockerfile ที่จะสร้างอิมเมจที่สามารถรันแอปพลิเคชันที่สร้างจาก Node.js ได้ ซึ่งเป็นเฟรมเวิร์คหนึ่งของภาษา Javascript ในการสร้างเน็ตเวิร์คแอปพลิเคชัน ~\cite{nodejs}
 	
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=0.5\textwidth]{dockerfile}  
-		\caption{ตัวอย่างไฟล์ Dockerfile ในการตั้งค่าเพื่อการสร้างอิมเมจของคอนเทนเนอร์}
+		\caption{ตัวอย่างไฟล์ Dockerfile ที่ใช้ในการตั้งค่าเพื่อสร้างอิมเมจของคอนเทนเนอร์}
 		\label{Fig:dockerfile}
 	\end{figure}
 	
-	\item Kubernetes	
+	\item \textbf{Kubernetes}
 	
 	Kubernetes คือ Orchestration ของกลุ่มคอนเทนเนอร์และกลุ่มเซิร์ฟเวอร์ มีความสามารถในการจัดการคอนเทนเนอร์ให้สามารถทำงานได้อย่างต่อเนื่อง มีช่วงเวลาหยุดทำงานเป็นศูนย์ 	 ~\cite{kubernetes} โดย Kubernetes ยังมีฟังก์ชันอำนวยความสะดวกอื่น ๆ เช่น
 	\begin{itemize}
 		\item กระจายโหลดที่เข้ามายังคอนเทนเนอร์ เพื่อให้สามารถทำงานได้อย่างมีเสถียรภาพ
 		\item ตั้งค่าให้ Kubernetes จัดสรรทรัพยากรต่าง ๆ กับคอนเทนเนอร์ได้ เช่น หน่วยความจำ และหน่วยประมวลผล เป็นต้น โดย Kubernetes จะจัดการเพื่อให้คอนเทนเนอร์ทำงานได้เต็มประสิทธิภาพตามทรัพยากรที่กำหนดไว้
-		\item เริ่มต้นการทำงานคอนเทนเนอร์ที่หยุดทำงานให้ใหม่ สับเปลี่ยนคอนเทนเนอร์ ลบคอนเทนเนอร์ที่ไม่มีการตอบสนอง และจะไม่อนุญาตให้ใช้งานคอนเทนเนอร์ ถ้าไม่อยู่ในสถานะพร้อมใช้งานจริง ๆ
+		\item เริ่มต้นการทำงานของคอนเทนเนอร์ที่หยุดทำงานให้ใหม่ สับเปลี่ยนคอนเทนเนอร์ ลบคอนเทนเนอร์ที่ไม่มีการตอบสนอง และจะไม่อนุญาตให้ใช้งานคอนเทนเนอร์ ถ้าไม่อยู่ในสถานะพร้อมใช้งานจริง ๆ
 		\item เก็บข้อมูลความลับต่าง ๆ ได้ โดยสามารถ Deploy และอัปเดตข้อมูลลับและการตั้งค่า โดยที่ไม่ต้อง Build คอนเทนเนอร์ใหม่
 	\end{itemize}
-	ในการตั้งค่าต่าง ๆ ให้กับ Kubernetes จะต้องเขียนไฟล์ .yaml หรือ .yml ซึ่งเป็นภาษามาตรฐานของชุดข้อมูลสำหรับทุกภาษาโปรแกรมมิ่ง ~\cite{yaml}
+	ในการตั้งค่าต่าง ๆ ให้กับ Kubernetes สามารถทำได้ผ่านไฟล์ .yaml หรือ .yml ซึ่งเป็นภาษามาตรฐานของชุดข้อมูลสำหรับทุกภาษาโปรแกรมมิ่ง ~\cite{yaml} โดยรูปที่ 2.9 จะเป็นตัวอย่างของไฟล์ .yaml ที่เอาไว้ตั้งค่า Kubernetes
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.4\textwidth]{k8sconfig}  
+		\includegraphics[width=0.375\textwidth]{k8sconfig}  
 		\caption{ตัวอย่างไฟล์ .yml หรือ .yaml ในการตั้งค่าให้กับ Kubernetes}
 		\label{Fig:cicdyaml}
 	\end{figure}
 	
-	\item Gitlab CI/CD
+	\item \textbf{Gitlab CI/CD}
 	
-	Gitlab CI/CD คือ เครื่องมือในการ Build ซอฟต์แวร์และ Deploy โดยอัตโนมัติ โดยเราสามารถตั้งค่าการทำงานของ Gitlab CI/CD ได้จากไฟล์ .gitlab-ci.yml ~\cite{gitlabcicd}
+	Gitlab CI/CD คือ เครื่องมือในการ Build ซอฟต์แวร์และ Deploy โดยอัตโนมัติ โดยเราสามารถตั้งค่าการทำงานของ Gitlab CI/CD ได้จากไฟล์ .gitlab-ci.yml ดังรูปที่ 2.10 ~\cite{gitlabcicd} 
 	
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.35\textwidth]{cicdyaml}  
+		\includegraphics[width=0.375\textwidth]{cicdyaml}  
 		\caption{ตัวอย่างไฟล์ .gitlab-ci.yml ในการตั้งค่าให้กับ Gitlab CI/CD}
 		\label{Fig:cicdyaml}
 	\end{figure}		
@@ -211,50 +203,50 @@
 \section{ลักษณะขั้นตอนการทำงาน}
 ทีม Development ของบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) จะถูกแบ่งออกเป็นทีมย่อย ๆ ตามประเภทของงานที่รับผิดชอบ เรียกว่า Squad ซึ่งจะเป็นทีมแบบ Cross-Functional กล่าวคือ ภายในทีมจะประกอบไปด้วยหลาย ๆ ฝ่าย ได้แก่ Project Manager, UX/UI Designer, Software Engineer (Frontend), Software Engineer (Backend), Software Engineer (iOS), Software Engineer (Android) และ Quality Assurance Engineer โดยแต่ละ Squad อาจจะฝ่ายอื่น ๆ เพิ่มเติมแตกต่างกันไป ขึ้นอยู่กับลักษณะของงานที่รับผิดชอบ โดยแต่ละ Squad นั้นจะทำงานโดยใช้ Scrum Framework เป็นหลัก Scrum จะทำงานเป็นวงรอบ (Sprint) แต่ละรอบนั้นจะเท่ากับ 2 สัปดาห์ ภายใน Sprint จะกิจกรรมที่สำคัญต่าง ๆ ดังต่อไปนี้
 \begin{enumerate}
-	\item Sprint Planning
+	\item \textbf{Sprint Planning}
 	
 	เป็นการประชุมตอนต้น Sprint เพื่อรับมอบหมายงานจาก Project Manager และเป็นการประชุมเพื่อปรึกษาหาวิธีการทำงานและวิธีการแก้ไขปัญหาต่าง ๆ ที่เกี่ยวกับงานที่ได้รับมอบหมาย
 	
-	\item Daily Meeting
+	\item \textbf{Daily Meeting}
 	
 	เป็นการประชุมแบบสั้น ๆ ประจำวัน มีจุดประสงค์เพื่อให้สมาชิกทีมรับทราบความคืบหน้าของงานที่แต่ละคนกำลังทำอยู่และทราบปัญหาที่เกิดขึ้นระหว่างการทำงาน
 	
-	\item Backlog Refinement Meeting
+	\item \textbf{Backlog Refinement Meeting}
 	
 	ปกติเมื่อ Squad ได้รับมอบหมายให้ทำงานใหม่ ๆ งานนั้นจะถูกจัดไว้ใน Features Backlog ก่อน ซึ่งงานที่อยู่ในนี้จะถูกนำเข้า Sprint ถัด ๆ ไป ขึ้นอยู่กับการตัดสินใจของ Project Manager การประชุมนี้จะจัดตอนกลาง Sprint เพื่อพิจารณางานที่อยู่ Features Backlog ว่าควรจะทำอย่างไร, เป็นงานสำคัญที่ต้องเอามาเท่าก่อนหรือไม่ และประเมินเวลาที่จะต้องใช้ในการทำงานชิ้นนี้ เป็นต้น
 	
-	\item Retrospective Meeting
+	\item \textbf{Retrospective Meeting}
 	
 	เป็นการประชุมตอนปลาย Sprint เพื่อสรุปการทำงานที่ได้ทำไปในรอบ และให้สมาชิกภายในทีมอธิบายปัญหาที่เกิดขึ้นในรอบ รวมไปถึงเรื่องราวดี ๆ ที่เกิดขึ้นในรอบด้วย เพื่อนำไปปรับปรุงการทำงานในรอบถัดไป
 \end{enumerate}
 
-การติดต่อสื่อสารภายในองค์กรจะใช้โปรแกรม Slack เป็นหลัก สถานะของงานภายในทีมสามารถดูได้จาก Kanban Board ซึ่งเป็นบอร์ดที่ตั้งอยู่ในพื้นที่ทำงาน และ Asana ซึ่งเป็นระบบออนไลน์ที่จะทำให้สมาชิกภายในทีมสามารถทราบสถานะของงานได้อย่างรวดเร็ว ภายในกระบวนการทำงาน สถานะของงานจะเป็นไปตามดังต่อไปนี้
+การติดต่อสื่อสารภายในองค์กรจะใช้โปรแกรม Slack เป็นหลัก ดังรูปที่ 2.11 ส่วนสถานะของงานภายในทีมสามารถดูได้จาก Kanban Board ดังรูปที่ 2.12 ซึ่งเป็นบอร์ดที่ตั้งอยู่ในพื้นที่ทำงาน หรือดูจาก Asana ที่ระบบออนไลน์ก็ได้ สำหรับการทำงานของทีม Development ของ Wongnai งานหนึ่งชิ้นจะมีสถานะของงาน ดังต่อไปนี้
 
 \begin{enumerate}
-	\item To do
+	\item \textbf{To do}
 	
-	งานที่ยังไม่ได้เริ่มทำ แต่อยู่ในรอบแล้วจะมีสถานะเป็น To do
+	งานที่ยังไม่ได้เริ่มทำ แต่อยู่ใน Sprint แล้วจะมีสถานะเป็น To do
 	
-	\item In progress
+	\item \textbf{In progress}
 	
 	งานที่กำลังทำอยู่จะมีสถานะเป็น In progress
 	
-	\item Review
+	\item \textbf{Review}
 	
 	เมื่องานที่ทำอยู่เสร็จแล้ว ก่อนที่จะนำงานส่วนที่ทำเข้าไปใน Beta Environment ของเซิฟเวอร์ ซึ่งเป็น Environment ที่มีไว้ทดสอบก่อนที่จะใช้งานจริง โค้ดที่เขียนขึ้นมาจะต้องผ่านการตรวจสอบจาก Software Engineer คนอื่นอย่างน้อย 2 คนก่อน จึงจะสามารถส่งไปให้ Quality Assurance Engineer ทำการทดสอบต่อได้
 	
-	\item Review passed
+	\item \textbf{Review passed}
 	
 	เมื่องานที่ทำอยู่ผ่านการตรวจสอบโดย Software Engineer คนอื่นครบ 2 คนแล้ว งานจะอยู่ในสถานะ Review passed 
 	
-	\item Testing
+	\item \textbf{Testing}
 	งานที่อยู่ในสถานะ Review passed จะถูกส่งต่อให้ Quality Assurance Engineer ทดสอบ ซึ่งก่อนที่จะให้ Quality Assurance Engineer ทดสอบนั้น จะต้องเตรียมวิธีการทดสอบและเตรียมข้อมูลให้เรียบร้อยก่อน
 	
-	\item Test passed
+	\item \textbf{Test passed}
 	
 	เมื่อ Quality Assurance Engineer ทดสอบเสร็จแล้ว งานจะอยู่ในสถานะ Test passed สามารถนำงานเข้า Beta Environment ได้เลย
 	
-	\item Done
+	\item \textbf{Done}
 	
 	เมื่อนำงานเข้าไปใน Beta Environment เสร็จแล้ว งานจะมีสถานะเป็น Done แต่อย่างไรก็ตาม เจ้าของงานจะต้องติดตามงานของตัวเองจนกว่างานจะขึ้นอยู่บนระบบที่ใช้งานจริง (Production Environment)
 \end{enumerate}
