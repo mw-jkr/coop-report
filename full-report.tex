@@ -10,9 +10,11 @@
 \usepackage{multirow}
 \usepackage[final]{pdfpages}
 \usepackage[labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage[hyphens,spaces,obeyspaces]{url}
 
 % ##### Set indent after new line on bibliography
-\def\bibindent{2.1em}
+\def\bibindent{2.4em}
 \makeatletter
 \let\old@biblabel\@biblabel
 \def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
@@ -34,7 +36,7 @@
 \newcommand{\ThesisTiTleENG}{ADVERTISEMENT MANAGEMENT SYSTEM BASED ON LIMITED NUMBER OF CLICKS AND IMPRESSIONS}
 \newcommand{\ThesisTiTleENGSnakecase}{Advertisement Management System Based on Limited Number of Clicks and Impressions}
 % Your name
-\newcommand{\AuName}{มาวิน จงไกรรัตนกุล}
+\newcommand{\AuName}{นาย มาวิน จงไกรรัตนกุล}
 % Your name ENG
 \newcommand{\AuNameENG}{MAWIN JONGKRIRATTANAKUL}
 \newcommand{\AuNameENGSnakecase}{Mawin Jongkrirattanakul}
@@ -71,11 +73,16 @@
 
 \begin{document}    
     \frontmatter
+    \pagenumbering{Roman}
     \lhead{}\rhead{}\chead{}\lfoot{}\cfoot{\thepage}\rfoot{}
     \makecover    
     \makeinnercover
     \makeengcover
     \makecopyrightcover
+    
+    % Setting margin for page numbering on frontmatter
+    \newgeometry{top=1in, bottom=1in, left=1.5in, right=1in, includefoot}
+    
     \makeletter
     \makeack{
         \begin{enumerate}
@@ -84,16 +91,13 @@
         \end{enumerate}
     }
     \makeapproveletter
-   
-    % Setting margin for page numbering on frontmatter
-    \newgeometry{top=1in, bottom=1in, left=1.5in, right=1in, includefoot}
     
     \makeabstract{
-    	รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้กล่าวถึงที่มาและความสำคัญ, รายละเอียด, การออกแบบ และกระบวนการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา รวมไปถึงลักษณะขั้นตอนการทำงานเพื่อให้ได้มาซึ่งระบบที่สามารถใช้งานได้จริง โดยทางบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) ได้มอบหมายให้ระหว่างการปฏิบัติงานสหกิจศึกษา ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา เป็นระบบที่พัฒนาขึ้นมาจากระบบจัดการโฆษณาเดิมที่มีอยู่ จากเดิมที่ระบบสามารถแสดงโฆษณาได้แค่ตามช่วงเวลาที่กำหนดไว้ ระบบใหม่จะสามารถแสดงโฆษณาตามจำนวนการคลิกและจำนวนการแสดงโฆษณาที่กำหนดไว้ได้ หากโฆษณาถูกแสดงหรือมีผู้ใช้คลิกเข้าไปในโฆษณาจนครบตามจำนวนที่กำหนดไว้ ระบบก็จะหยุดแสดงโฆษณาโดยอัตโนมัติ อีกทั้งยังสามารถรายงานผลการโฆษณากลับไปยังลูกค้าได้โดยอัตโนมัติ ระบบที่ถูกพัฒนาขึ้นมาใหม่นั้น จะทำให้ลูกค้าสามารถลงโฆษณาบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ได้อย่างคุ้มค่ามากยิ่งขึ้น เนื่องจากวิธีการแสดงโฆษณาแบบดังกล่าว สามารถการันตีได้ว่า โฆษณาของลูกค้ามีผู้ชมจริง ๆ ในช่วงที่โฆษณายังแสดงผลอยู่ และลูกค้าสามารถติดตามผลการโฆษณาได้อย่างต่อเนื่อง อีกทั้งบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ก็สามารถจัดการพื้นที่การโฆษณาได้ดียิ่งขึ้น โฆษณาที่มีผู้ชมมากจะถูกหยุดการแสดงผล และนำโฆษณาอื่นมาแสดงแทน ทำให้โฆษณามีเนื้อหาที่หลากหลายมากยิ่งขึ้น
+    	รายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ กล่าวถึงวัตถุประสงค์การปฏิบัติงาน, ที่มาและความสำคัญ, รายละเอียด, การออกแบบ และกระบวนการทำงานของระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา รวมไปถึงลักษณะขั้นตอนการทำงานเพื่อให้ได้มาซึ่งระบบที่สามารถใช้งานได้จริง โดยทางบริษัท วงใน มีเดีย จำกัด (สำนักงานใหญ่) ได้มอบหมายให้ระหว่างการปฏิบัติงานสหกิจศึกษา ระบบจัดการโฆษณาแบบจำกัดจำนวนการคลิกและการแสดงโฆษณา เป็นระบบที่พัฒนาขึ้นมาจากระบบจัดการโฆษณาเดิมที่มีอยู่ จากเดิมที่ระบบสามารถแสดงโฆษณาได้แค่ตามช่วงเวลาที่กำหนดไว้ ระบบใหม่จะสามารถแสดงโฆษณาตามจำนวนการคลิกและจำนวนการแสดงโฆษณาที่กำหนดไว้ได้ หากโฆษณาถูกแสดงหรือมีผู้ใช้คลิกเข้าไปในโฆษณาจนครบตามจำนวนที่กำหนดไว้ ระบบก็จะหยุดแสดงโฆษณาโดยอัตโนมัติ อีกทั้งยังสามารถรายงานผลการโฆษณากลับไปยังลูกค้าได้โดยอัตโนมัติ ระบบที่ถูกพัฒนาขึ้นมาใหม่นั้น จะทำให้ลูกค้าสามารถลงโฆษณาบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ได้อย่างคุ้มค่ามากยิ่งขึ้น เนื่องจากวิธีการแสดงโฆษณาแบบดังกล่าว สามารถการันตีได้ว่า โฆษณาของลูกค้ามีผู้ชมจริง ๆ ในช่วงที่โฆษณายังแสดงผลอยู่ และลูกค้าสามารถติดตามผลการโฆษณาได้อย่างต่อเนื่อง อีกทั้งบนเว็บไซต์ wongnai.com และแอปพลิเคชัน Wongnai ก็สามารถจัดการพื้นที่การโฆษณาได้ดียิ่งขึ้น โฆษณาที่มีผู้ชมมากจะถูกหยุดการแสดงผล และนำโฆษณาอื่นมาแสดงแทน ทำให้โฆษณามีเนื้อหาที่หลากหลายมากยิ่งขึ้น
     }
 
    \makeengabstract{
-       This cooperative education report presents the statement of significance, specification, design, and workflow of the Advertisement Management System Based on Limited Number of Clicks and Impressions including the development process to develop a system that can be used in production which has been assigned by Wongnai Media Co., Ltd during cooperative education. Advertisement Management System Based on Limited Number of Clicks and Impressions is a system that developed from a former advertisement management system which only able to show advertisements for just the specified period. A newer system will be able to show advertisements based on a number of clicks and impressions. When the advertisements' number of clicks or impressions reaches a limit, the system will stop showing advertisements automatically and also report advertising results back to customers automatically. The newly developed system will allow customers to advertise on the Wongnai website and application more cost-effectively due to the above method of advertisements displaying can guarantee that the client's advertisements will reach to the audience while the advertisements are showing and clients can continuously monitor the advertising results. Moreover, Wongnai will be able to better manage the advertising space. Also on the Wongnai website and application can better manage advertising space. The advertisements with a large audience will stop showing and display other advertisements instead Make the ads have more variety of content.
+       This cooperative education report presents the objectives of performance, statement of significance, specification, design, and workflow of the Advertisement Management System Based on Limited Number of Clicks and Impressions including the development process to develop a system that can be used in production which has been assigned by Wongnai Media Co., Ltd during cooperative education. Advertisement Management System Based on Limited Number of Clicks and Impressions is a system that developed from a former advertisement management system which only able to show advertisements for just the specified period. A newer system will be able to show advertisements based on a number of clicks and impressions. When the advertisements' number of clicks or impressions reaches a limit, the system will stop showing advertisements automatically and also report advertising results back to customers automatically. The newly developed system will allow customers to advertise on the Wongnai website and application more cost-effectively due to the above method of advertisements displaying can guarantee that the client's advertisements will reach to the audience while the advertisements are showing and clients can continuously monitor the advertising results. Moreover, Wongnai will be able to better manage the advertising space. Also on the Wongnai website and application can better manage advertising space. The advertisements with a large audience will stop showing and display other advertisements instead Make the ads have more variety of content.
    }
 
     \newpage
@@ -104,6 +108,7 @@
     \addcontentsline{toc}{chapter}{สารบัญรูป}
     \listoffigures
 
+	\newpage
     \addcontentsline{toc}{chapter}{สารบัญตาราง}
     \listoftables
     
@@ -121,8 +126,13 @@
     
     \clearpage
     \addcontentsline{toc}{chapter}{บรรณานุกรม}
+    \begingroup
+    \raggedright
     \bibliographystyle{IEEEtran}
     \bibliography{reference}
+    \endgroup
+    
+    
     
     \newpage
     

@@ -20,8 +20,9 @@
 \RequirePackage{etoolbox}
 \RequirePackage[labelfont=bf]{caption}
 \RequirePackage{geometry}
+\RequirePackage[hyphens,spaces,obeyspaces]{url}
 \RequirePackage{hyperref}
-
+ 
 \hypersetup{colorlinks=false}
 \geometry{text={7in,9.5in},headheight=15pt}
 
@@ -42,10 +43,11 @@
 \titleformat{\chapter}[display]
 {\normalfont\Large\bfseries\centering}
 {\chaptertitlename\ \thechapter}{0pt}{\LARGE}
-\titlespacing*{\chapter}{0pt}{-2\baselineskip}{2em}
+\titlespacing*{\chapter}{0pt}{-1\baselineskip}{2em}
 
 \titleformat{\section}
 {\normalfont\large\bfseries}{\thesection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1em}{0.25em}
 
 \titleformat{\subsection}
 {\normalfont\bfseries}{\thesubsection}{0.5em}{}
@@ -73,18 +75,18 @@
 
 % ##### Override the plain style to make the first chapter page same with other pages
 \fancypagestyle{plain}{
-	\renewcommand{\headrulewidth}{0pt}
-	\lhead{}\rhead{}\chead{}
-	\lfoot{}\cfoot{}\rfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+    \lhead{}\rhead{}\chead{}
+    \lfoot{}\cfoot{}\rfoot{}
 }
 
 % ##### Override subfigure to use Thai alpha instead of English
 \def\thaialph#1{\expandafter\thalph\csname c@#1\endcsname}
 \def\thalph#1{%
-	\ifcase#1\or ก\or ข\or ค\or ง\or จ\or ฉ\or ช\or ซ\or
-	ฌ\or ญ\or ฎ\or ฏ\or ฐ\or ฑ\or ฒ\or ณ\or ด\or ต\or ถ\or ท\or ธ\or น\or
-	บ\or ป\or ผ\or ฝ\or พ\or ฟ\or ภ\or ม\or ย\or ร\or ฤ\or ล\or ฦ\or ว\or
-	ศ\or ษ\or ส\or ห\or ฬ\or อ\else ฮ\else\xpg@ill@value{#1}{thalph}\fi}
+    \ifcase#1\or ก\or ข\or ค\or ง\or จ\or ฉ\or ช\or ซ\or
+    ฌ\or ญ\or ฎ\or ฏ\or ฐ\or ฑ\or ฒ\or ณ\or ด\or ต\or ถ\or ท\or ธ\or น\or
+    บ\or ป\or ผ\or ฝ\or พ\or ฟ\or ภ\or ม\or ย\or ร\or ฤ\or ล\or ฦ\or ว\or
+    ศ\or ษ\or ส\or ห\or ฬ\or อ\else ฮ\else\xpg@ill@value{#1}{thalph}\fi}
 \renewcommand\thesubfigure{(\thaialph{subfigure})}
 
 \captionsetup[table]{labelsep=space}
@@ -95,38 +97,38 @@
 %ตั้งค่าความลึกของหน้าสารบัญใหม่เป็น 1 (คือลงลึกแค่ชั้นเดียว) และตั้งค่าคำสั่ง \tableofcontents ใหม่
 \setcounter{tocdepth}{1}
 \renewcommand\tableofcontents{
-	\begin{center}
-		{\LARGE \textbf{สารบัญ} }
-	\end{center} \vskip2em
-	\begin{flushright}
-		\textbf{หน้า}
-	\end{flushright}
-	% Hold current page value
-	% for TOC heading
-	\newcounter{tocitem}
-	\setcounter{tocitem}{0}
-	\modulolinenumbers[50]
-	\linenumbers[1]
-	\@starttoc{toc}
-	\setcounter{tocitem}{0}
-	\clearpage
-	\cleardoublepage
+    \begin{center}
+        {\LARGE \textbf{สารบัญ} }
+    \end{center} \vskip2em
+    \begin{flushright}
+        \textbf{หน้า}
+    \end{flushright}
+    % Hold current page value
+    % for TOC heading
+    \newcounter{tocitem}
+    \setcounter{tocitem}{0}
+    \modulolinenumbers[50]
+    \linenumbers[1]
+    \@starttoc{toc}
+    \setcounter{tocitem}{0}
+    \clearpage
+    \cleardoublepage
 }
 
 %สร้างคำสั่งใหม่สำหรับตรวจสอบว่าบรรทัดปัจจุบัน หรือ จำนวนหัวข้อที่แสดงในสารบัญเกินค่าทึ่กำหนดหรือยัง หากเกินแล้วให้ตัดขึ้นหน้าใหม่ รีเซตตัวนับ tocitem รีเซตตัวนับบรรทัดใหม่ และเขียนหัวของหน้าสารบัญใหม่ (เช่น สารบัญ (ต่อ) ในกรณีนี้)
 \newcommand{\tocheadcont}[3]{
-	\ifthenelse{#1>29 \OR #2>29}{
-		%Should be a newpage here.
-		\pagebreak[4]
-		\resetlinenumber[1]
-		\setcounter{tocitem}{0}
-		\begin{center}
-			{\LARGE \textbf{#3 (ต่อ)} }
-		\end{center}  \vskip2em
-		\begin{flushright}
-			\textbf{หน้า}
-		\end{flushright}
-	}{}
+    \ifthenelse{#1>28 \OR #2>28}{
+        %Should be a newpage here.
+        \pagebreak[4]
+        \resetlinenumber[1]
+        \setcounter{tocitem}{0}
+        \begin{center}
+            {\LARGE \textbf{#3 (ต่อ)} }
+        \end{center}  \vskip2em
+        \begin{flushright}
+            \textbf{หน้า}
+        \end{flushright}
+    }{}
 }
 
 % tocitem format for chapter
@@ -143,67 +145,67 @@
 
 % ##### LOT Overrided 
 \newcommand{\lotheadcont}[3]{
-	\ifthenelse{#1>26 \OR #2>26}{
-		%Should be a newpage here.
-		\pagebreak[4]
-		\resetlinenumber[1]
-		\setcounter{lotitem}{1}
-		\begin{center}
-			{\LARGE \textbf{#3 (ต่อ)} }
-		\end{center}  \vskip2em
-		\begin{flushright}
-			\textbf{หน้า}
-		\end{flushright}
-	}{}
+    \ifthenelse{#1>29 \OR #2>29}{
+        %Should be a newpage here.
+        \pagebreak[4]
+        \resetlinenumber[1]
+        \setcounter{lotitem}{1}
+        \begin{center}
+            {\LARGE \textbf{#3 (ต่อ)} }
+        \end{center}  \vskip2em
+        \begin{flushright}
+            \textbf{หน้า}
+        \end{flushright}
+    }{}
 }
 
 \renewcommand\listoftables{%
-	\begin{center}
-		{\LARGE \textbf{\listtablename} }
-	\end{center} \vskip2em
-	\textbf{ตารางที่}
-	\hfill
-	\textbf{หน้า} \par
-	\resetlinenumber[1]
-	\newcounter{lotitem}
-	\@starttoc{lot}%
-	\clearpage
-	\cleardoublepage
+    \begin{center}
+        {\LARGE \textbf{\listtablename} }
+    \end{center} \vskip2em
+    \textbf{ตารางที่}
+    \hfill
+    \textbf{หน้า} \par
+    \resetlinenumber[1]
+    \newcounter{lotitem}
+    \@starttoc{lot}%
+    \clearpage
+    \cleardoublepage
 }
 
 \titlecontents{table}[0mm]{\stepcounter{lotitem}\lotheadcont{\thelinenumber}{\thelotitem}{\listftablename}}{\contentspush{\thecontentslabel\hspace{2mm}}}{}{\hfill \contentspage}
 
 % ##### LOF Overrided 
 \newcommand{\lofheadcont}[3]{
-	\ifthenelse{#1>26 \OR #2>26}{
-		%Should be a newpage here.
-		\pagebreak[4]
-		\resetlinenumber[1]
-		\setcounter{lofitem}{1}
-		\begin{center}
-			{\LARGE \textbf{#3 (ต่อ)} }
-		\end{center}  \vskip2em
-		\begin{center}
-			\textbf{รูปที่}
-			\null\hfill
-			\textbf{หน้า} \par
-		\end{center}
-	}{}
+    \ifthenelse{#1>27 \OR #2>27}{
+        %Should be a newpage here.
+        \pagebreak[4]
+        \resetlinenumber[1]
+        \setcounter{lofitem}{1}
+        \begin{center}
+            {\LARGE \textbf{#3 (ต่อ)} }
+        \end{center}  \vskip2em
+        \begin{center}
+                    \textbf{รูปที่}
+            \null\hfill
+            \textbf{หน้า} \par
+        \end{center}
+    }{}
 }
 
 \renewcommand\listoffigures{%
-	\begin{center}
-		{\LARGE \textbf{\listfigurename} }
-	\end{center} \vskip2em
-	\textbf{รูปที่}
-	\null\hfill
-	\textbf{หน้า} \par
-	\resetlinenumber[1]
-	\newcounter{lofitem}
-	\@starttoc{lof}
-	\pagewiselinenumbers
-	\clearpage
-	\cleardoublepage
+    \begin{center}
+        {\LARGE \textbf{\listfigurename} }
+    \end{center} \vskip2em
+    \textbf{รูปที่}
+    \null\hfill
+    \textbf{หน้า} \par
+    \resetlinenumber[1]
+    \newcounter{lofitem}
+    \@starttoc{lof}
+    \pagewiselinenumbers
+    \clearpage
+    \cleardoublepage
 }
 
 % Indent the next line of the entry by the width of the label with \contentspush
@@ -211,224 +213,226 @@
 
 %  Newcommand each required page
 \newcommand{\makecover}{
-	% ปกนอก
-	\thispagestyle{empty}
-	
-	\begin{center}
-		\Large{\textbf{รายงานการปฏิบัติงานสหกิจศึกษา}} \vskip1cm
-		\LARGE{\textbf{เรื่อง}} \\
-		\LARGE{\textbf{\ThesisTiTle}} \\
-		\LARGE{\textbf{\ThesisTiTleENG}} \vskip3cm
-		\Large{\textbf{ปฎิบัติงาน ณ \Company}} \vskip1cm
-		\Large{\textbf{โดย}} \vskip1cm
-		\Large{\textbf{\AuName}}  \\
-		\Large{\textbf{รหัสประจำตัว \SId}} \null \vfill
-		\LARGE{\textbf{รายงานนี้เป็นส่วนหนึ่งของการศึกษารายวิชา สหกิจศึกษา \\
-				สาขาวิชาเทคโนโลยีสารสนเทศ คณะเทคโนโลยีสารสนเทศ \\
-				ภาคเรียนที่~\Sem \  ปีการศึกษา~\AcaY\\ 
-				สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง }}
-	\end{center}
+    % ปกนอก
+    \thispagestyle{empty}
+    
+    \begin{center}
+        \Large{\textbf{รายงานการปฏิบัติงานสหกิจศึกษา}} \\
+        \LARGE{\textbf{เรื่อง}}
+        \LARGE{\textbf{\ThesisTiTle}} \\
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip3cm
+        \Large{\textbf{ปฎิบัติงาน ณ \Company}} \vskip1cm
+        \Large{\textbf{โดย}} \vskip1cm
+        \Large{\textbf{\AuName}}  \\
+        \Large{\textbf{รหัสประจำตัว \SId}} \null \vfill
+        \large{\textbf{รายงานนี้เป็นส่วนหนึ่งของการศึกษารายวิชา สหกิจศึกษา \\
+                สาขาวิชาเทคโนโลยีสารสนเทศ คณะเทคโนโลยีสารสนเทศ \\
+                ภาคเรียนที่~\Sem \  ปีการศึกษา~\AcaY\\ 
+                สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง }}
+    \end{center}
 }
 
 \newcommand{\makeinnercover}{
-	% ปกใน
-	\newpage
-	\thispagestyle{empty}
-	\begin{center}
-		\Large{\textbf{รายงานการปฏิบัติงานสหกิจศึกษา}} \\
-		\LARGE{\textbf{\ThesisTiTle}} \\
-		\LARGE{\textbf{\ThesisTiTleENG}} \vskip4cm
-		\Large{\textbf{ปฎิบัติงาน ณ \Company}} \vskip1cm
-		\Large{\textbf{โดย}} \vskip1cm
-		\Large{\textbf{\AuName}}  \\
-		\Large{\textbf{รหัสประจำตัว \SId}} \null \vfill
-		\large{\textbf{ปฏิบัติงาน ณ \Company \\
-				\Address \\ 
-				Web site : \Website}}
-	\end{center}
+    % ปกใน
+    \newpage
+    \thispagestyle{empty}
+    \begin{center}
+        \Large{\textbf{รายงานปฏิบัติงานสหกิจศึกษา}} \\
+        \LARGE{\textbf{\ThesisTiTle}} \\
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip3cm
+        \Large{\textbf{โดย}} \\
+        \Large{\textbf{\AuName}}  \\
+        \Large{\textbf{รหัสประจำตัว \SId}} \vskip3cm
+        \Large{\textbf{อาจารย์ที่ปรึกษา}} \\
+        \Large{\textbf{\Advisor}} \null \vfill
+        \large{\textbf{ปฏิบัติงาน ณ \Company \\
+                \Address \\ 
+                Web site : \Website}}
+    \end{center}
 }
 
 \newcommand{\makeengcover}{
-	% ปกอังกฤษ
-	\newpage
-	\thispagestyle{empty}
-	\begin{center}
-		\LARGE{\textbf{\ThesisTiTleENG}} \vskip7cm
-		\Large{\textbf{\AuNameENG}}  \null \vfill
-		\large{\textbf{A REPORT SUBMITTED IN PARTIAL FULFILLMENT OF \\
-				THE REQUIREMENT FOR COOPERATING EDUCATION PROGRAM \\
-				THE DEGREE OF BACHELOR OF SCIENCE PROGRAM IN \\
-				INFORMATION TECHNOLOGY \\
-				FACULTY OF INFORMATION TECNOLOGY \\
-				KING MONGKUT’S INSTITUTE OF TECHNOLOGY LADKRABANG \\
-				\Sem / \AcaYAD}}
-	\end{center}
+    % ปกอังกฤษ
+    \newpage
+    \thispagestyle{empty}
+    \begin{center}
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip7cm
+        \Large{\textbf{\AuNameENG}}  \null \vfill
+        \large{\textbf{A REPORT SUBMITTED IN PARTIAL FULFILLMENT OF \\
+                THE REQUIREMENT FOR COOPERATING EDUCATION PROGRAM \\
+                THE DEGREE OF BACHELOR OF SCIENCE PROGRAM IN \\
+                INFORMATION TECHNOLOGY \\
+                FACULTY OF INFORMATION TECNOLOGY \\
+                KING MONGKUT’S INSTITUTE OF TECHNOLOGY LADKRABANG \\
+                \Sem / \AcaYAD}}
+    \end{center}
 }
 
 \newcommand{\makecopyrightcover}{
-	\newpage
-	\thispagestyle{empty}
-	\null\vfill
-	\begin{large}
-		\noindent\textbf{COPYRIGHT \AcaYAD \\
-			FACULTY OF INFORMATION TECHNOLOGY \\
-			KING MONGKUT’S INSTITUTE OF TECHNOLOGY LADKRABANG}
-	\end{large}
+    \newpage
+    \thispagestyle{empty}
+    \null\vfill
+    \begin{large}
+        \noindent\textbf{COPYRIGHT \AcaYAD \\
+            FACULTY OF INFORMATION TECHNOLOGY \\
+            KING MONGKUT’S INSTITUTE OF TECHNOLOGY LADKRABANG}
+    \end{large}
 }
 
 \newcommand{\makeletter}{
-	%-- หนังสือส่งรายงานการปฏิบัติงานสหกิจศึกษา -------------------------------------------
-	\newpage
-	\setcounter{page}{1}
-	\addcontentsline{toc}{chapter}{หนังสือส่งรายงานการปฏิบัติงานสหกิจศึกษา}
-	\begin{flushright}
-		วันที่ \SubD
-	\end{flushright}
-	
-	\noindent เรื่อง ขอส่งรายงานการปฏิบัติงานสหกิจศึกษา \\
-	เรียน \Advisor \vskip0.1cm
-	
-	\hskip0.2cm ที่ปรึกษาสหกิจศึกษาในสาขาเทคโนโลยีสารสนเทศ \vskip1cm
-	
-	ตามที่ข้าพเจ้า \AuName \ นักศึกษาสาขาวิชาเทคโนโลยีสารสนเทศ คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง ได้ปฏิบัติงานสหกิจศึกษาระหว่างวันที่ \StartDWork \ ถึงวันที่ \EndDWork \ ในตำแหน่ง \Position \ ณ สถานประกอบการชื่อ \Company \ และได้รับมอบหมายจากพนักงานที่ปรึกษาให้ศึกษาและจัดทำรายงาน เรื่อง \ThesisTiTle
-	
-	บัดนี้ การปฏิบัติงานสหกิจศึกษาได้สิ้นสุดลงแล้ว จึงใคร่ขอส่งรายงานการปฏิบัติงาน สหกิจศึกษาดังกล่าวมาพร้อมนี้ จำนวน 1 เล่ม เพื่อขอรับคำปรึกษาต่อไป 
-	
-	จึงเรียนมาเพื่อโปรดพิจารณา 
-	
-	\vskip1.5cm
-	\begin{flushright}    
-		\begin{tabular}{c}
-			ขอแสดงความนับถือ \\ \\
-			.............................................................. \\
-			(\AuName ) 
-		\end{tabular}
-	\end{flushright}
+    %-- หนังสือส่งรายงานการปฏิบัติงานสหกิจศึกษา -------------------------------------------
+   	\newpage
+   	\setcounter{page}{1}
+   	\addcontentsline{toc}{chapter}{หนังสือส่งรายงานการปฏิบัติงานสหกิจศึกษา}
+    \begin{flushright}
+        วันที่ \SubD
+    \end{flushright}
+    
+    \noindent เรื่อง ขอส่งรายงานการปฏิบัติงานสหกิจศึกษา \\
+    เรียน \Advisor \vskip0.1cm
+    
+    \hskip0.2cm ที่ปรึกษาสหกิจศึกษาในสาขาวิชาเทคโนโลยีสารสนเทศ \vskip1cm
+    
+   \noindent \hskip2.46cm ตามที่ข้าพเจ้า \AuName \ นักศึกษาสาขาวิชาเทคโนโลยีสารสนเทศ คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง ได้ปฏิบัติงานสหกิจศึกษาระหว่างวันที่ \StartDWork \ ถึงวันที่ \EndDWork \ ในตำแหน่ง \Position \ ณ สถานประกอบการชื่อ \Company \ และได้รับมอบหมายจากพนักงานที่ปรึกษาให้ศึกษาและจัดทำรายงาน เรื่อง \ThesisTiTle
+    
+    \noindent \hskip2.46cm บัดนี้ การปฏิบัติงานสหกิจศึกษาได้สิ้นสุดลงแล้ว จึงใคร่ขอส่งรายงานการปฏิบัติงาน สหกิจศึกษาดังกล่าวมาพร้อมนี้ จำนวน 1 เล่ม เพื่อขอรับคำปรึกษาต่อไป \\
+    
+    
+    \noindent \hskip2.46cm จึงเรียนมาเพื่อโปรดพิจารณา 
+    
+    \vskip1.5cm
+    \begin{flushright}    
+        \begin{tabular}{c}
+            ขอแสดงความนับถือ \\ \\
+            .............................................................. \\
+            (\AuName ) 
+        \end{tabular}
+    \end{flushright}
 }
 
 \newcommand{\makeack}[1]{
-	%-- ACKNOWLEDGEMENTS Page -------------------------------------------
-	\newpage
-	\addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
-	\begin{center}
-		{\LARGE \textbf{กิตติกรรมประกาศ} }
-	\end{center} \vskip2em
-	
-	ตามที่ข้าพเจ้า \AuName \ ได้มาปฏิบัติงานสหกิจศึกษา ณ \Company \ ตั้งแต่วันที่ \StartDWork \ ถึงวันที่ \EndDWork \ ทำให้ข้าพเจ้าได้รับความรู้และประสบการณ์ต่าง ๆ ที่มีคุณค่ามากมาย สำหรับรายงานสหกิจศึกษาฉบับนี้สำเร็จลงได้ด้วยดี จากความช่วยเหลือและความร่วมมือสนับสนุนของหลายฝ่าย ดังนี้ 
-	
-	#1
-	
-	นอกจากนี้ยังมีบุคคลท่านอื่น ๆ อีกที่ไม่ได้กล่าวไว้ ณ ที่นี้ ซึ่งให้ความกรุณาแนะนำในจัดทำรายงานสหกิจศึกษาฉบับนี้ ข้าพเจ้าจึงใคร่ขอขอบพระคุณทุกท่านที่ได้มีส่วนร่วมในการให้ข้อมูลและให้ความเข้าใจเกี่ยวกับชีวิตของการปฏิบัติงาน รวมถึงเป็นที่ปรึกษาในการจัดทำรายงานฉบับนี้จนเสร็จสมบูรณ์ 
-	
-	\vskip1.5cm
-	\begin{flushright}    
-		\begin{tabular}{c}
-			\AuName \\
-			ผู้จัดทำรายงาน \\
-			วันที่ \SubD
-		\end{tabular}
-	\end{flushright}
+    %-- ACKNOWLEDGEMENTS Page -------------------------------------------
+    \newpage
+    \addcontentsline{toc}{chapter}{กิตติกรรมประกาศ}
+    \begin{center}
+        {\LARGE \textbf{กิตติกรรมประกาศ} }
+    \end{center} \vskip2em
+    
+    ตามที่ข้าพเจ้า \AuName \ ได้มาปฏิบัติงานสหกิจศึกษา ณ \Company \ ตั้งแต่วันที่ \StartDWork \ ถึงวันที่ \EndDWork \ ทำให้ข้าพเจ้าได้รับความรู้และประสบการณ์ต่าง ๆ ที่มีคุณค่ามากมาย สำหรับรายงานสหกิจศึกษาฉบับนี้สำเร็จลงได้ด้วยดี จากความช่วยเหลือและความร่วมมือสนับสนุนของหลายฝ่าย ดังนี้ 
+    
+    #1
+    
+    นอกจากนี้ยังมีบุคคลท่านอื่น ๆ อีกที่ไม่ได้กล่าวไว้ ณ ที่นี้ ซึ่งให้ความกรุณาแนะนำในจัดทำรายงานสหกิจศึกษาฉบับนี้ ข้าพเจ้าจึงใคร่ขอขอบพระคุณทุกท่านที่ได้มีส่วนร่วมในการให้ข้อมูลและให้ความเข้าใจเกี่ยวกับชีวิตของการปฏิบัติงาน รวมถึงเป็นที่ปรึกษาในการจัดทำรายงานฉบับนี้จนเสร็จสมบูรณ์ 
+    
+    \vskip1.5cm
+    \begin{flushright}    
+        \begin{tabular}{c}
+            \AuName \\
+            ผู้จัดทำรายงาน \\
+            วันที่ \SubD
+        \end{tabular}
+    \end{flushright}
 }
 
 \newcommand{\makeapproveletter}{
-	%-X- หน้าอนุมัติรายงาน -X------------------------------------------
-	% Do NOT EDIT this page
-	\newpage
-	\addcontentsline{toc}{chapter}{เอกสารอนุมัติรายงาน}
-	\begin{table}[h]
-		\begin{tabularx}{\linewidth}{lX}
-			\textbf{ชื่อรายงานการปฏิบัติงานสหกิจศึกษา} & \ThesisTiTle \\
-			\textbf{ผู้รายงาน} & \AuName \\
-			\textbf{คณะ} & เทคโนโลยีสารสนเทศ \\
-			\textbf{สาขาวิชา} & เทคโนโลยีสารสนเทศ
-		\end{tabularx}
-	\end{table} \vskip3cm
-	
-	
-	\begin{center}
-		...................................................................... \\
-		(\Advisor ) \\
-		อาจารย์ที่ปรึกษาสหกิจศึกษา \vskip2.5cm
-		
-		...................................................................... \\
-		(\Exami) \\
-		พนักงานที่ปรึกษา \null \vfill
-		
-		คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง	\\
-		อนุมัติให้นับรายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ เป็นส่วนหนึ่งของการศึกษา \\
-		ตามหลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาเทคโนโลยีสารสนเทศ
-		
-	\end{center}
+    %-X- หน้าอนุมัติรายงาน -X------------------------------------------
+    % Do NOT EDIT this page
+    \newpage
+    \addcontentsline{toc}{chapter}{เอกสารอนุมัติรายงาน}
+    \begin{table}[h]
+        \begin{tabularx}{\linewidth}{lX}
+            \textbf{ชื่อรายงานการปฏิบัติงานสหกิจศึกษา} & \ThesisTiTle \\
+            \textbf{ผู้รายงาน} & \AuName \\
+            \textbf{คณะ} & เทคโนโลยีสารสนเทศ \\
+            \textbf{สาขาวิชา} & เทคโนโลยีสารสนเทศ
+        \end{tabularx}
+    \end{table} \vskip6cm
+    
+    
+    \begin{center}
+        ...................................................................... \\
+        (\Advisor ) \\
+        อาจารย์ที่ปรึกษาสหกิจศึกษา \vskip2.5cm
+        
+        ...................................................................... \\
+        (\Exami) \\
+        พนักงานที่ปรึกษา \null \vfill
+        
+        คณะเทคโนโลยีสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง	\\
+        อนุมัติให้นับรายงานการปฏิบัติงานสหกิจศึกษาฉบับนี้ เป็นส่วนหนึ่งของการศึกษา \\
+        ตามหลักสูตรวิทยาศาสตรบัณฑิต สาขาวิชาเทคโนโลยีสารสนเทศ
+        
+    \end{center}
 }
 
 \newcommand{\makeabstract}[1]{
-	%-- Abstract Page ------------------------------------------
-	\newpage
-	\addcontentsline{toc}{chapter}{บทคัดย่อ}
-	
-	\begin{table}[h]
-		\begin{tabularx}{\linewidth}{lX}
-			\textbf{ชื่อรายงาน} & \ThesisTiTle \\
-			\textbf{ชื่อนักศึกษา} & \AuName \\
-			\textbf{รหัสนักศึกษา} & \SId \\
-			\textbf{สาขาวิชา} & เทคโนโลยีสารสนเทศ \\
-			\textbf{อาจารย์ที่ปรึกษา} & \Advisor \\
-			\textbf{ปีการศึกษา} & \AcaY
-		\end{tabularx}
-	\end{table}
-	
-	\vskip1cm
-	\begin{center}
-		\textbf{\Large บทคัดย่อ}
-	\end{center}
-	
-	#1
+    %-- Abstract Page ------------------------------------------
+    \newpage
+    \addcontentsline{toc}{chapter}{บทคัดย่อ}
+    
+    \begin{table}[h]
+        \begin{tabularx}{\linewidth}{lX}
+            ชื่อรายงาน & \ThesisTiTle \\
+            ชื่อนักศึกษา & \AuName \\
+            รหัสนักศึกษา & \SId \\
+            สาขาวิชา & เทคโนโลยีสารสนเทศ \\
+            อาจารย์ที่ปรึกษา & \Advisor \\
+            ปีการศึกษา & \AcaY
+        \end{tabularx}
+    \end{table}
+    
+    \vskip1cm
+    \begin{center}
+        \textbf{\Large บทคัดย่อ}
+    \end{center}
+    
+    #1
 }
 
 \newcommand{\makeengabstract}[1]{
-	%-- Abstract Page ------------------------------------------
-	\newpage
-	\addcontentsline{toc}{chapter}{Abstract}
-	
-	\begin{table}[h]
-		\begin{tabularx}{\linewidth}{lX}
-			\textbf{Project Title} & \ThesisTiTleENGSnakecase \\
-			\textbf{Student} & \AuNameENGSnakecase \\
-			\textbf{Student ID} & \SId \\
-			\textbf{Program} & Information Technology \\
-			\textbf{Advisor} & \AdvisorEng \\
-			\textbf{Year} & \AcaYAD
-		\end{tabularx}
-	\end{table}
-	
-	
-	\vskip1cm
-	\begin{center}
-		\textbf{\Large Abstract}
-	\end{center}
-	
-	#1
+    %-- Abstract Page ------------------------------------------
+    \newpage
+    \addcontentsline{toc}{chapter}{ABSTRACT}
+    
+    \begin{table}[h]
+        \begin{tabularx}{\linewidth}{lX}
+            Project Title & \ThesisTiTleENGSnakecase \\
+            Student & \AuNameENGSnakecase \\
+            Student ID & \SId \\
+            Program & Information Technology \\
+            Advisor & \AdvisorEng \\
+            Year & \AcaYAD
+        \end{tabularx}
+    \end{table}
+    
+    
+    \vskip1cm
+    \begin{center}
+        \textbf{\Large ABSTRACT}
+    \end{center}
+    
+    #1
 }
 
 \newcommand\startappendix{    
-	\appendix
-	
-	\renewcommand*{\appendixname}{}
-	\renewcommand{\thechapter}{\thaialph{chapter}}
-	
-	\titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{}{0pt}
-	{ 
-		\thispagestyle{empty}
-		\begin{center}
-			\vspace*{\stretch{1}}\LARGE{\textbf{ภาคผนวก \thechapter}}\vspace*{\stretch{1}}
-		\end{center}
-		\clearpage
-		\LARGE
-	}
-	\titlespacing*{\chapter}{0pt}{-3.2\baselineskip}{2em}
-	
-	\titlecontents{chapter}[0mm]
-	{\stepcounter{tocitem}\tocheadcont{\thelinenumber}{\thetocitem}{\contentsname}}
-	{ภาคผนวก\hspace{1ex}\thecontentslabel\hspace{2mm}}
-	{}{\hfill \contentspage}
+    \appendix
+    
+    \renewcommand*{\appendixname}{}
+    \renewcommand{\thechapter}{\thaialph{chapter}}
+    
+    \titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{}{0pt}
+    { 
+        \thispagestyle{empty}
+        \begin{center}
+            \vspace*{\stretch{1}}\LARGE{\textbf{ภาคผนวก \thechapter}}\vspace*{\stretch{1}}
+        \end{center}
+        \clearpage
+        \LARGE
+    }
+    \titlespacing*{\chapter}{0pt}{-3.2\baselineskip}{2em}
+    
+    \titlecontents{chapter}[0mm]
+    {\stepcounter{tocitem}\tocheadcont{\thelinenumber}{\thetocitem}{\contentsname}}
+    {ภาคผนวก\hspace{1ex}\thecontentslabel\hspace{2mm}}
+    {}{\hfill \contentspage}
 }
