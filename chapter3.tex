@@ -123,7 +123,7 @@
 	
 	\begin{figure}[!h]
 	 	\centering
-	 	\includegraphics[width=0.5\textwidth]{cronjob1}  
+	 	\includegraphics[width=0.65\textwidth]{cronjob1}  
 	 	\caption{ตัวอย่างการตั้งค่า Kubernetes ให้รัน Task โดยอัตโนมัติด้วย CronJob}
 	 	\label{Fig:cronjob1}
 	\end{figure}
@@ -136,7 +136,7 @@
 	\begin{itemize}
 		\item \textbf{Statistics Updater}
 		
-		ฟังก์ชัน Statistics Updater ทำหน้าที่ดึงข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาบน Wongnai ที่เก็บไว้อยู่ใน Google BigQuery มาอัปเดตลงในฐานข้อมูลของ Ad Report โดยฟังก์ชันนี้จะทำการส่ง Query String ที่เป็น SQL ไปยังตารางขนาดเล็กที่เก็บข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาใน Google BigQuery เพื่อนำข้อมูลในช่วงเวลาที่ต้องการออกม าจากนั้นนำข้อมูลที่ได้มาบันทึกลงในฐานข้อมูล โดย Schema ของตารางที่จะบันทึกข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาในเซอร์วิส Ad Report จะเป็นไปดังตารางที่ 3.5
+		ฟังก์ชัน Statistics Updater ทำหน้าที่ดึงข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาบน Wongnai ที่เก็บไว้อยู่ใน Google BigQuery มาอัปเดตลงในฐานข้อมูลของเซอร์วิส Ad Report โดยฟังก์ชันนี้จะทำการส่ง Query String ที่เป็น SQL ไปยัง Google BigQuery เพื่อนำข้อมูลจากตารางขนาดเล็กที่เก็บข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณาในช่วงเวลาที่ต้องการออกมา จากนั้นนำข้อมูลที่ได้มาบันทึกลงในฐานข้อมูลของเซอร์วิส Ad Report โดย Schema ตารางในฐานข้อมูลของเซอร์วิส Ad Report ที่จะบันทึกข้อมูลเหตุการณ์ที่เกี่ยวกับโฆษณา จะเป็นไปดังตารางที่ 3.5
 		
 		\begin{table}[!h]
 			\centering
@@ -204,7 +204,7 @@
 	
 		\begin{figure}[!h]
 			\centering
-			\includegraphics[width=0.55\textwidth]{weekly-report-email}  
+			\includegraphics[width=0.6\textwidth]{weekly-report-email}  
 			\caption{แผนผังการทำงานของ ApplicationRunner Class Weekly Report Email}
 			\label{Fig:weekly-report-diagram}
 		\end{figure}

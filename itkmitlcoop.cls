@@ -220,9 +220,10 @@
         \Large{\textbf{รายงานการปฏิบัติงานสหกิจศึกษา}} \\
         \LARGE{\textbf{เรื่อง}}
         \LARGE{\textbf{\ThesisTiTle}} \\
-        \LARGE{\textbf{\ThesisTiTleENG}} \vskip3cm
-        \Large{\textbf{ปฎิบัติงาน ณ \Company}} \vskip1cm
-        \Large{\textbf{โดย}} \vskip1cm
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip4cm
+        \Large{\textbf{ปฎิบัติงาน ณ}} \\
+        \Large{\textbf{\Company}} \vskip4cm
+        \Large{\textbf{โดย}} \\
         \Large{\textbf{\AuName}}  \\
         \Large{\textbf{รหัสประจำตัว \SId}} \null \vfill
         \large{\textbf{รายงานนี้เป็นส่วนหนึ่งของการศึกษารายวิชา สหกิจศึกษา \\
@@ -239,10 +240,10 @@
     \begin{center}
         \Large{\textbf{รายงานปฏิบัติงานสหกิจศึกษา}} \\
         \LARGE{\textbf{\ThesisTiTle}} \\
-        \LARGE{\textbf{\ThesisTiTleENG}} \vskip3cm
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip4cm
         \Large{\textbf{โดย}} \\
         \Large{\textbf{\AuName}}  \\
-        \Large{\textbf{รหัสประจำตัว \SId}} \vskip3cm
+        \Large{\textbf{รหัสประจำตัว \SId}} \vskip4cm
         \Large{\textbf{อาจารย์ที่ปรึกษา}} \\
         \Large{\textbf{\Advisor}} \null \vfill
         \large{\textbf{ปฏิบัติงาน ณ \Company \\
@@ -256,7 +257,7 @@
     \newpage
     \thispagestyle{empty}
     \begin{center}
-        \LARGE{\textbf{\ThesisTiTleENG}} \vskip7cm
+        \LARGE{\textbf{\ThesisTiTleENG}} \vskip8cm
         \Large{\textbf{\AuNameENG}}  \null \vfill
         \large{\textbf{A REPORT SUBMITTED IN PARTIAL FULFILLMENT OF \\
                 THE REQUIREMENT FOR COOPERATING EDUCATION PROGRAM \\
